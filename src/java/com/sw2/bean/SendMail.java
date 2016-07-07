@@ -33,12 +33,12 @@ import javax.mail.internet.MimeMessage;
  * @author cvalencia
  */
 public class SendMail {
-
-    public static String Username = "jamaperufood@gmail.com";
-    public static String PassWord = "jamaperuweb";
-    String Mensage = "hola";
-    String To = "dgo250594@gmail.com";
-    String Subject = "prueba";
+    
+    public static String Username = "remasageosys.smtp@gmail.com";
+    public static String PassWord = "Remasa_geosys";
+    String Mensage = "";
+    String To = "";
+    String Subject = "";
 
     public String getMensage() {
         return Mensage;
@@ -63,12 +63,12 @@ public class SendMail {
     public void setSubject(String Subject) {
         this.Subject = Subject;
     }
-
+    
+    
     public void SendMail() {
         Properties props = new Properties();
-
-        props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
 
@@ -78,7 +78,6 @@ public class SendMail {
                         return new PasswordAuthentication(Username, PassWord);
                     }
                 });
-        System.out.println("ggggg");
 
         try {
 
@@ -88,13 +87,15 @@ public class SendMail {
                     InternetAddress.parse(To));
             message.setSubject(Subject);
             message.setText(Mensage);
- System.out.println("ggggg");   
+
             Transport.send(message);
-             System.out.println("Done");
+            
+
         } catch (MessagingException e) {
             throw new RuntimeException(e);
-            
         }
     }
-
+    
+    
+    
 }

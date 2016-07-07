@@ -4,18 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Tus platillos</title>
-        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <%--
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link href="css/animate.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        --%>
         <%-- Fuentes --%>
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -111,7 +102,7 @@
                         <div></div>                     
                     </div>
                     <%  } else {
-                            
+
 
                     %>
                     <h1>Usted no tiene platillos registrados.</h1> 

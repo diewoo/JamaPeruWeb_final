@@ -160,4 +160,34 @@ public class UsuarioDAO {
         }
 
     }
+    
+    public void actualizarContra(String correo , String password){
+          // 5.1 Interface Connection
+         Connection con = cone.getConnection();
+         // 5.2 Sentencia SQL
+         String sql="UPDATE  usuarios SET password = ? WHERE correo = ?";
+        PreparedStatement pstmt=null;
+         try {
+             //5.3 Precompilamos la sentencia sql
+             pstmt=con.prepareStatement(sql);
+            // 5.4 Colocar los valores en las ????
+             pstmt.setString(1,password);
+             pstmt.setString(2, correo);
+             // 5.5 Ejecutar
+             int cont = pstmt.executeUpdate();
+            
+                      
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }finally {
+              try {
+                   // 5.6 Liberar recursos
+                   //puede lanzar excepciones SQLException
+                pstmt.close();
+                con.close();
+              } catch (SQLException ex) {
+               
+         }
+     }
+    }
 }

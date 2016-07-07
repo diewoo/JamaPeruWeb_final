@@ -13,21 +13,20 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/animate.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
         <script src="js/sweetalert.min.js" type="text/javascript"></script>
         <link href="css/freelancer.css" rel="stylesheet" type="text/css"/>
-        
-
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css">
         <script>
             $(function () {
                 $("#datepicker").datepicker();
             });
         </script> 
     </head>
-    
+
     <body style="background: url('img/jama.jpg') no-repeat center center fixed;">
         <div class="navbar navbar-default navbar-fixed-top">
             <a class="navbar-brand" href="index.jsp">JamaPeru</a>
@@ -39,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -49,7 +48,7 @@
 
                 </ul>
             </div> 
-            
+
         </div>
         <div class="container" style="margin-top: 100px;">
             <form class="form-horizontal" id="form" method="post" action="RegistrarUsuarioServlet" >
@@ -113,7 +112,7 @@
             </form>
 
         </div>
-        
+
         <script src="js/validalogin.js" type="text/javascript"></script>
         <script src="js/cbpAnimatedHeader.js" type="text/javascript"></script>
         <script src="js/classie.js" type="text/javascript"></script>

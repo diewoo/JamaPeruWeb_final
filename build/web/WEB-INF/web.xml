@@ -32,6 +32,14 @@
         <servlet-name>platilloPost</servlet-name>
         <servlet-class>com.sw2.servlets.platilloPost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RestorePassServlet</servlet-name>
+        <servlet-class>com.sw2.servlets.RestorePassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CambioPassServlet</servlet-name>
+        <servlet-class>com.sw2.servlets.CambioPassServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>platilloPost</servlet-name>
         <url-pattern>/platilloPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RestorePassServlet</servlet-name>
+        <url-pattern>/RestorePassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CambioPassServlet</servlet-name>
+        <url-pattern>/CambioPassServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

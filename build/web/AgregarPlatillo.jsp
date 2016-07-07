@@ -18,21 +18,8 @@
         <link href="css/freelancer.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <%--
-        <meta name="viewport" content="width=device-width, initial-scale=1">        
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <script src="js/cloudinary.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link href="css/animate.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        <script src="js/cloudinary.js" type="text/javascript"></script>
-        --%>
+         <script src="js/cloudinary.js" type="text/javascript"></script>
+       
         
 
     </head>
@@ -83,7 +70,7 @@
                 <div style="margin-top: auto"class="form-group">
                     <label  class="col-md-2 control-label" style="color: black"><strong>Foto:</strong></label>
                     <div class="col-md-1 ">
-                        <a class="btn btn-primary"id="upload_widget_opener" >Subir</a>
+                        <a class="btn btn-primary" id="upload_widget_opener" >Subir</a>
                         <input type="text" hidden="" name="imagen" id="imagen" value="" >    
                     </div>
                 </div> 

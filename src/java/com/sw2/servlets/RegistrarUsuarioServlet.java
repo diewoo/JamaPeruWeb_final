@@ -5,10 +5,10 @@
  */
 package com.sw2.servlets;
 
+import com.sw2.bean.SendMail;
 import com.sw2.bean.Usuario;
 import com.sw2.dao.UsuarioDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +32,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        SendMail mail = new SendMail();
         Usuario user = new Usuario();
         UsuarioDAO dao = new UsuarioDAO();
         String correo = request.getParameter("correo");
@@ -41,12 +41,12 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         String password = request.getParameter("password");
         String fecha = request.getParameter("fecha");
         String sexo = request.getParameter("sexo");
-        if (correo != null
-                && nombre != null
-                && apellido != null
-                && password != null
-                && fecha != null
-                && sexo != null) {
+        if (!correo.equalsIgnoreCase("")
+                && !nombre.equalsIgnoreCase("")
+                && !apellido.equalsIgnoreCase("")
+                && !password.equalsIgnoreCase("")
+                && !fecha.equalsIgnoreCase("")
+                && !sexo.equalsIgnoreCase("")) {
             if (dao.validarCorreo(correo).equals("")) {
                 user.setApellido(request.getParameter("apellido"));
                 user.setCorreo(request.getParameter("correo"));
@@ -56,6 +56,17 @@ public class RegistrarUsuarioServlet extends HttpServlet {
                 user.setSexo(request.getParameter("sexo"));
                 user.setTipo("F");
                 dao.crearUsuario(user);
+
+                try {
+                    
+                    mail.setMensage("Te Acabas de registrar en JamaPeru app , disfrute la experiencia.");
+                    mail.setSubject("Registro - JamaPeru");
+                    mail.setTo(correo);//PP
+                    mail.SendMail();
+                } catch (Exception e) {
+                    response.sendRedirect("ErrorCorreo.jsp");
+                }
+
                 response.sendRedirect("index.jsp");
             }
 
