@@ -22,12 +22,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
-        <%--       
-              <link href="css/style.css" rel="stylesheet" type="text/css"/>
-              <script src="js/prefixfree.min.js"></script>
-              <link href="css/animate.css" rel="stylesheet" type="text/css"/>
-              <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
-        --%>
+
     </head>
     <script>
         var valida = false;
@@ -42,11 +37,8 @@
 
 
         };
-
         function login() {
-
             FB.login(function (response) {
-
                 if (response.authResponse) {
                     var url = '/me?fields=name,email';
                     console.log('Welcome!  Fetching your information.... ');
@@ -57,7 +49,7 @@
                         valida = true;
                         //var x = response.email;
                         //  if (valida === true) {
-                        location.href = 'loginfbservlet?correo='+response.email+'&nombre='+
+                        location.href = 'loginfbservlet?correo=' + response.email + '&nombre=' +
                                 response.name;
 
                         //}
@@ -67,22 +59,12 @@
 
                 } else {
                     console.log('User cancelled login or did not fully authorize.');
-
                 }
-
-            })
-
-                    ;
-
+            });
         }
-
-
-
     </script>
-
-    <div id="fb-root"></div>
-     <body  id="page-top"style="background: url('img/jama.jpg') no-repeat center center fixed;">
-   
+    <body  id="page-top"style="background: url('img/jama.jpg') no-repeat center center fixed;">
+        <div id="fb-root"></div>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header page-scroll">
@@ -126,9 +108,7 @@
                     <div class="row">
                         <form  id="forma1" method="POST" action="LoginServlet">
                             <br>
-                            <div class="col-xs-3">
-
-                            </div>
+                            <div class="col-xs-3"></div>
                             <div class="col-xs-6" style="">  
                                 <a class="btn btn-info " onclick="javascript:login()" style="width: 100%;border-radius: 15px">Login con Facebook</a>
                                 <br>
@@ -144,85 +124,80 @@
 
 
 
-                               
+
 
                                 <button  type="submit"  class="btn btn-primary col-xs-4" style="border-radius: 15px" >Login</button>
-                                 <div class="col-xs-4"></div>
-                                 <a href="Registro.jsp" class="btn btn-warning col-xs-4" style="border-radius: 15px ">Registrarse</a>
+                                <div class="col-xs-4"></div>
+                                <a href="Registro.jsp" class="btn btn-warning col-xs-4" style="border-radius: 15px ">Registrarse</a>
                             </div>
                             <div class="col-xs-3"></div>
                             <br>
 
-
-                            </div>
-                    <br>
-                            <a href="Password.jsp"  style="color: darkblue;font-size: 15px; font-weight: bold;" >Olvidaste tu contraseña?</a>
-
-
                         </form>
-
                     </div>
+                    <br>
+                    <a href="Password.jsp"  style="color: darkblue;font-size: 15px; font-weight: bold;" >Olvidaste tu contraseña?</a>
+                </div>
                 <br>
                 <br>
-                    <a class="btn btn-primary" href="#page-top">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    </header>
-                    <footer class="text-center" id="foot-page">
-                        <div class="footer-above">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="footer-col col-md-4" id="contact">
-                                        <h3>Local</h3>
-                                        <p>3481 Las flores<br>San Isidro, Lima 32</p>
-                                    </div>
-                                    <div class="footer-col col-md-4">
-                                        <h3>Nuestras Redes Sociales</h3>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="footer-col col-md-4">
-                                        <h3>Acerca de nosotros</h3>
-                                        <p>Somos una pequeña empresa en la búsqueda de nuevos talentos culinarios <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
-                                    </div>
-                                </div>
-                            </div>
+                <a class="btn btn-primary" href="#page-top"><i class="fa fa-chevron-up"></i></a>
+            </div>
+        </header>
+        <footer class="text-center" id="foot-page">
+            <div class="footer-above">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-4" id="contact">
+                            <h3>Local</h3>
+                            <p>3481 Las flores<br>San Isidro, Lima 32</p>
                         </div>
-                        <div class="footer-below">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        Copyright © Jamawep.com 2016
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="footer-col col-md-4">
+                            <h3>Nuestras Redes Sociales</h3>
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                </li>
+                            </ul>
                         </div>
-                    </footer>
-                    <%-- JavaScript --%>
-                    <script src="js/prefixfree.min.js"></script>
-                    <%-- Plugin JavaScript --%>
-                    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                    <script src="js/cbpAnimatedHeader.js" type="text/javascript"></script>
-                    <script src="js/classie.js" type="text/javascript"></script>
-                    <%-- jquery --%>
-                    <script src="js/jquery.js" type="text/javascript"></script>
-                    <%-- Bosstrap JavaScript --%>
-                    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-                    <%-- Custom Theme JavaScript --%>
-                    <script src="js/freelancer.js" type="text/javascript"></script>
-                    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                    <script src='http://connect.facebook.net/en_US/all.js'></script>
-                    </body>
-                    </html>
+                        <div class="footer-col col-md-4">
+                            <h3>Acerca de nosotros</h3>
+                            <p>Somos una pequeña empresa en la búsqueda de nuevos talentos culinarios <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-below">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            Copyright © Jamawep.com 2016
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <%-- JavaScript --%>
+        <script src="js/prefixfree.min.js"></script>
+        <%-- Plugin JavaScript --%>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src="js/cbpAnimatedHeader.js" type="text/javascript"></script>
+        <script src="js/classie.js" type="text/javascript"></script>
+        <%-- jquery --%>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <%-- Bosstrap JavaScript --%>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <%-- Custom Theme JavaScript --%>
+        <script src="js/freelancer.js" type="text/javascript"></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='http://connect.facebook.net/en_US/all.js'></script>
+    </body>
+</html>

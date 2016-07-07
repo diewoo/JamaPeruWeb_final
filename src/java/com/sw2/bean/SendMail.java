@@ -34,8 +34,8 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendMail {
     
-    public static String Username = "remasageosys.smtp@gmail.com";
-    public static String PassWord = "Remasa_geosys";
+    public static String Username = "jamaperufood@gmail.com";
+    public static String PassWord = "jamaperuweb";
     String Mensage = "";
     String To = "";
     String Subject = "";
