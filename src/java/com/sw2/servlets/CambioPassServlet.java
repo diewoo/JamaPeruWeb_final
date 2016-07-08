@@ -35,9 +35,9 @@ public class CambioPassServlet extends HttpServlet {
         String contra = request.getParameter("contra");
         String contra2 = request.getParameter("contra2");
         UsuarioDAO dao = new UsuarioDAO();
-        
         dao.actualizarContra(correo, contra);
-        response.sendRedirect("index.jsp");
+        
+        response.sendRedirect("PasswordCambiado.jsp");
         
         
     }

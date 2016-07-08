@@ -89,7 +89,7 @@ public class UsuarioDAO {
 
         return usuario;
     }
-     public Usuario obtenerUserXUsuarioxFb(String usu ) {
+    public Usuario obtenerUserXUsuarioxFb(String usu ) {
 
         Usuario usuario = null;
         int idusuario = 0;
@@ -153,7 +153,6 @@ public class UsuarioDAO {
 
         return usuario;
     }
-
     public String validarCorreo(String correo) {
 
         
@@ -187,7 +186,6 @@ public class UsuarioDAO {
 
         return mail;
     }
-    
     public void crearUsuario(Usuario usuario) {
         Connection con = cone.getConnection();
         PreparedStatement stmt1 = null;
@@ -227,7 +225,6 @@ public class UsuarioDAO {
         }
 
     }
-    
     public void actualizarContra(String correo , String password){
           // 5.1 Interface Connection
          Connection con = cone.getConnection();
@@ -257,7 +254,7 @@ public class UsuarioDAO {
          }
      }
     }
-     public List<Usuario> llamar() {
+    public List<Usuario> llamar() {
          List<Usuario> lista = new ArrayList<>();
          PreparedStatement stmt = null;
          ResultSet rs = null;
@@ -284,5 +281,42 @@ public class UsuarioDAO {
              }
         }
        return lista;  
+    }
+    public void RegistrarUsuarioFacebook(String correo, String nombre){
+        Connection con = cone.getConnection();
+        PreparedStatement stmt1 = null;
+
+        String sql1 = "INSERT INTO usuarios ( nombre, apellido , correo ,sexo , tipo, fecha_nac, password"
+               + " ) VALUES (?,?,?,?,?,?,?)";
+        try {
+
+            stmt1 = con.prepareStatement(sql1);
+            stmt1.setString(1, nombre);
+            stmt1.setString(2, "");
+            stmt1.setString(3, correo);
+            stmt1.setString(4, "M");
+            stmt1.setString(5, "F");
+            stmt1.setString(6, "01/09/1995");
+            stmt1.setString(7, "");
+            
+            int rc1 = stmt1.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println("Ocurrio un error SQL ");
+            ex.printStackTrace();
+            try {
+                con.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            } finally {
+            try {
+                stmt1.close();
+
+                con.close();
+            } catch (SQLException ex) {
+
+            }
+        }
     }
 }

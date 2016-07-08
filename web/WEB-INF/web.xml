@@ -44,6 +44,10 @@
         <servlet-name>indexfb</servlet-name>
         <servlet-class>com.sw2.servlets.indexfb</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistrofbServlet</servlet-name>
+        <servlet-class>com.sw2.servlets.RegistrofbServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>indexfb</servlet-name>
         <url-pattern>/indexfb</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrofbServlet</servlet-name>
+        <url-pattern>/RegistrofbServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

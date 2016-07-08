@@ -40,16 +40,11 @@ public class loginfbservlet extends HttpServlet {
         String delimitadores = "[ .,;?!¡¿\'\"\\[\\]]+";
         String nombrecompleto[] = nombre.split(delimitadores);
 
-        System.out.println("aaaaa");
-        System.out.println(nombrecompleto[0]);
-        System.out.println(correo);
-
         UsuarioDAO usuariofb = new UsuarioDAO();
         Usuario user=usuariofb.obtenerUserXUsuarioxFb(correo);
-        //List<Usuario> l1 = usuariofb.llamar();
+        
         if(user!=null){
              String nombre_BD[] = user.getNombre().split(delimitadores);
-            if(nombre_BD[0].equalsIgnoreCase(nombrecompleto[0].toLowerCase())){
                 if(user.getCorreo().equalsIgnoreCase(correo)){
                     RequestDispatcher dispatcher = request.getRequestDispatcher("AddSessionServlet");
                     request.setAttribute("usuario", user);
@@ -58,11 +53,6 @@ public class loginfbservlet extends HttpServlet {
                     RequestDispatcher rd = request.getRequestDispatcher("indexfb");
                        rd.forward(request, response);
                 }
-            }else{
-                RequestDispatcher rd = request.getRequestDispatcher("indexfb");
-               rd.forward(request, response);
-            }
-            
         }else{
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);

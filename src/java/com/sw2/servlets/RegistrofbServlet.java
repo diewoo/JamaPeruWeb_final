@@ -6,19 +6,19 @@
 package com.sw2.servlets;
 
 import com.sw2.bean.Usuario;
+import com.sw2.dao.UsuarioDAO;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author cvalencia
  */
-public class AddSessionServlet extends HttpServlet {
+public class RegistrofbServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,28 +31,16 @@ public class AddSessionServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        int fail;
-        String admin = "dgo250594@gmail.com";
-        String passadmin = "diego123";
-        if (request.getAttribute("usuario") != null) {
-
-            Usuario usuario = (Usuario) request.getAttribute("usuario");
-
-            if (usuario.getCorreo().equalsIgnoreCase(admin)
-                    && usuario.getPassword().equalsIgnoreCase(passadmin)) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("gestionPlatillo");
-                request.setAttribute("usuario", usuario);
-                dispatcher.forward(request, response);
-            } else {
-                session.setAttribute("usuarioSes", usuario);
-                response.sendRedirect("Cuenta.jsp");
-            }
-
-        } else {
-            fail = 1;
-        }
-
+        
+        String nombre = request.getParameter("nombre");
+        String correo = request.getParameter("correo");
+        UsuarioDAO dao = new UsuarioDAO();
+        dao.RegistrarUsuarioFacebook(correo, nombre);
+        Usuario user = dao.obtenerUserXUsuarioxFb(correo);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("AddSessionServlet");
+        request.setAttribute("usuario", user);
+        dispatcher.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

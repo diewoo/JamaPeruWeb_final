@@ -49,19 +49,18 @@
                         valida = true;
                         //var x = response.email;
                         //  if (valida === true) {
-                   
+
 
                         //}
-                        location.href = 'loginfbservlet?correo=' + response.email   + '&nombre=' +
-                                response.name;
+                        location.href = 'loginfbservlet?correo=' + response.email + '&nombre=' + response.name;
 
                     }, {scope: 'email'});
-                    
+
 
                 } else {
                     console.log('User cancelled login or did not fully authorize.');
                 }
-                
+
             });
         }
     </script>
@@ -118,16 +117,8 @@
                                 <br>
                                 <br>
 
-                                <input type="text" placeholder="usuario" name="user" class="form-control"><br>
-
-
+                                <input type="text" placeholder="usuario" name="correo" class="form-control"><br>
                                 <input type="password" placeholder="password" name="password" class="form-control"><br>
-
-
-
-
-
-
                                 <button  type="submit"  class="btn btn-primary col-xs-4" style="border-radius: 15px" >Login</button>
                                 <div class="col-xs-4"></div>
                                 <a href="Registro.jsp" class="btn btn-warning col-xs-4" style="border-radius: 15px ">Registrarse</a>

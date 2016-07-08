@@ -39,7 +39,7 @@ public class RestorePassServlet extends HttpServlet {
         if(!carreoBack.equalsIgnoreCase("")){
             try {
                     mail.setMensage("Ingrese al siguiente link para cambiar su contraseña."+"\n"+
-                            "http://localhost:8080/JamaPeruWeb_final/ConfirmarCambioCon.jsp?correo="+correo);
+                            "http://jamaserverweb.azurewebsites.net/jamawebapp/ConfirmarCambioCon.jsp?correo="+correo);
                     mail.setSubject("Cambio de contraseña - JamaPeru");
                     mail.setTo(correo);
                     mail.SendMail();

@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,22 +32,23 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //HttpSession ses = request.getSession(true);
-
-        String usuario = request.getParameter("user");
-        String password = request.getParameter("password");
         
+
+        String usuario = request.getParameter("correo");
+        String password = request.getParameter("password");
+        if(password==null){
+            password="";
+        }
         UsuarioDAO dao = new UsuarioDAO();
-        Usuario user = dao.obtenerUserXUsuario(usuario , password);
-         String admin = "dgo250594@gmail.com";
-        String passadmin="diego123";
+        Usuario user = dao.obtenerUserXUsuario(usuario, password);
+        
 
         if (user != null) {
-            
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("AddSessionServlet");
             request.setAttribute("usuario", user);
             dispatcher.forward(request, response);
-        }else {
+        } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
         }
