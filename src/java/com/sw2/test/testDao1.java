@@ -5,12 +5,8 @@
  */
 package com.sw2.test;
 
-import com.sw2.bean.Platillo;
 import com.sw2.bean.SendMail;
 import com.sw2.bean.Usuario;
-import com.sw2.bean.Venta;
-import com.sw2.dao.PlatilloDAO;
-import com.sw2.dao.ProfitDAO;
 import com.sw2.dao.UsuarioDAO;
 import java.util.List;
 
@@ -37,16 +33,19 @@ public class testDao1 {
 //            System.out.println(td1);
 //        }
         
-        SendMail send=new SendMail();
-        send.SendMail();
+        //SendMail send=new SendMail();
+      //  send.SendMail();
         
+        UsuarioDAO u=new UsuarioDAO();
         
+     Usuario u1=u.obtenerUserXUsuarioxFb("dgo250594@gmail.com");
+        System.out.println(u1);
         
-        
-//        List<Venta> ventas =  test.getVentas(1);
-//        for (Venta venta : ventas) {
-//            System.out.println(venta);
-//        }
+        UsuarioDAO test=new UsuarioDAO();
+              List<Usuario> ventas =  test.llamar();
+for (Usuario venta : ventas) {
+         System.out.println(venta);
+      }
         
         
     }

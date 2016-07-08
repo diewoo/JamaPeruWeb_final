@@ -5,12 +5,15 @@
  */
 package com.sw2.dao;
 
+import com.sw2.bean.Platillo;
 import com.sw2.bean.Usuario;
 import com.sw2.conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,6 +50,70 @@ public class UsuarioDAO {
 
             stmt.setString(1, usu);
             stmt.setString(2, pass);
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                usuario = new Usuario();
+                idusuario = rs.getInt(1);
+                usuario.setIdusuarios(idusuario);
+                nombre = rs.getString(2);
+                usuario.setNombre(nombre);
+                apellido = rs.getString(3);
+                usuario.setApellido(apellido);
+                correo = rs.getString(4);
+                usuario.setCorreo(correo);
+                sexo = rs.getString(5);
+                usuario.setSexo(sexo);
+                tipo = rs.getString(6);
+                usuario.setTipo(tipo);
+                fecha_nac = rs.getString(7);
+                usuario.setFecha_nac(fecha_nac);
+                contra = rs.getString(8);
+                usuario.setPassword(contra);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Ocurrio un error SQL ");
+            ex.printStackTrace();
+        } finally {
+            try {
+
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+
+            }
+        }
+
+        return usuario;
+    }
+     public Usuario obtenerUserXUsuarioxFb(String usu ) {
+
+        Usuario usuario = null;
+        int idusuario = 0;
+        String nombre = "";
+        String contra = "";
+        String apellido = "";
+        String correo = "";
+        String sexo = "";
+        String tipo = "";
+        String fecha_nac = "";
+        String password = "";
+        ResultSet rs = null;
+
+        Connection con = null;
+        String sql = "SELECT * FROM usuarios WHERE correo=? ";
+        PreparedStatement stmt = null;
+        System.out.println(sql);
+
+        try {
+            con = cone.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            stmt.setString(1, usu);
+           
 
             rs = stmt.executeQuery();
 
@@ -189,5 +256,33 @@ public class UsuarioDAO {
                
          }
      }
+    }
+     public List<Usuario> llamar() {
+         List<Usuario> lista = new ArrayList<>();
+         PreparedStatement stmt = null;
+         ResultSet rs = null;
+         
+         String sql = "SELECT * FROM usuarios ";
+         Connection con = cone.getConnection();
+        try {
+            
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while(rs.next()){               
+               Usuario u = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)
+                       ,rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+               lista.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{            
+             try {
+                 con.close();
+                 stmt.close();
+             } catch (SQLException ex) {
+                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+       return lista;  
     }
 }

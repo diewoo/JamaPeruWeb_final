@@ -40,7 +40,7 @@
         function login() {
             FB.login(function (response) {
                 if (response.authResponse) {
-                    var url = '/me?fields=name,email';
+                    var url = '/me?fields=name,email,permissions';
                     console.log('Welcome!  Fetching your information.... ');
                     FB.api(url, function (response) {
                         console.log('Good to see you, ' + response.email);
@@ -49,17 +49,19 @@
                         valida = true;
                         //var x = response.email;
                         //  if (valida === true) {
-                        location.href = 'loginfbservlet?correo=' + response.email + '&nombre=' +
-                                response.name;
+                   
 
                         //}
+                        location.href = 'loginfbservlet?correo=' + response.email   + '&nombre=' +
+                                response.name;
 
                     }, {scope: 'email'});
-
+                    
 
                 } else {
                     console.log('User cancelled login or did not fully authorize.');
                 }
+                
             });
         }
     </script>

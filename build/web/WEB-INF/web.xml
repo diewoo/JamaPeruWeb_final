@@ -40,6 +40,10 @@
         <servlet-name>CambioPassServlet</servlet-name>
         <servlet-class>com.sw2.servlets.CambioPassServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>indexfb</servlet-name>
+        <servlet-class>com.sw2.servlets.indexfb</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>CambioPassServlet</servlet-name>
         <url-pattern>/CambioPassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>indexfb</servlet-name>
+        <url-pattern>/indexfb</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

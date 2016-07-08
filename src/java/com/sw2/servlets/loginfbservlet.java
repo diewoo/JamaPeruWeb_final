@@ -5,8 +5,10 @@
  */
 package com.sw2.servlets;
 
+import com.sw2.bean.Usuario;
+import com.sw2.dao.UsuarioDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,14 +33,72 @@ public class loginfbservlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     String nombre =request.getParameter("nombre");
-      String correo =request.getParameter("correo");
-       HttpSession ses = request.getSession(true);
-       ses.setAttribute(nombre, "nombre");
-             ses.setAttribute(correo, "correo");
-       RequestDispatcher rd = request.getRequestDispatcher("/test.jsp");
-        rd.forward(request, response);
-    }
+        HttpSession ses = request.getSession(true);
+        String nombre = request.getParameter("nombre");
+        String correo = request.getParameter("correo");
+
+        String delimitadores = "[ .,;?!¡¿\'\"\\[\\]]+";
+        String nombrecompleto[] = nombre.split(delimitadores);
+
+        System.out.println("aaaaa");
+        System.out.println(nombrecompleto[0]);
+        System.out.println(correo);
+
+        UsuarioDAO usuariofb = new UsuarioDAO();
+        Usuario user=usuariofb.obtenerUserXUsuarioxFb(correo);
+        //List<Usuario> l1 = usuariofb.llamar();
+        if(user!=null){
+             String nombre_BD[] = user.getNombre().split(delimitadores);
+            if(nombre_BD[0].equalsIgnoreCase(nombrecompleto[0].toLowerCase())){
+                if(user.getCorreo().equalsIgnoreCase(correo)){
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("AddSessionServlet");
+                    request.setAttribute("usuario", user);
+                    dispatcher.forward(request, response);
+                }else{
+                    RequestDispatcher rd = request.getRequestDispatcher("indexfb");
+                       rd.forward(request, response);
+                }
+            }else{
+                RequestDispatcher rd = request.getRequestDispatcher("indexfb");
+               rd.forward(request, response);
+            }
+            
+        }else{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
+        }
+//        for (Usuario u : l1) {
+//            
+//            String nombre_BD[] = u.getNombre().split(delimitadores);
+//
+//            if (nombre_BD[0].equalsIgnoreCase(nombrecompleto[0].toLowerCase())) {
+//                if (u.getCorreo().equalsIgnoreCase(correo)) {
+//
+//                    System.out.println("ddddd");
+//                    System.out.println(nombre_BD[0]);
+//                    System.out.println(nombrecompleto[0].toLowerCase());
+//                    
+//                    
+//                    request.setAttribute("usuario", user);
+//                    ses.setAttribute("usuario", correo);
+//                    ses.setAttribute(nombre, "nombre");
+//                    ses.setAttribute(correo, "correo");
+//                    RequestDispatcher rd = request.getRequestDispatcher("test.jsp");
+//                    //System.out.println("ggggggggggggggg");
+//                    rd.forward(request, response);
+//
+//                } else {
+//                    RequestDispatcher rd = request.getRequestDispatcher("indexfb");
+//                    rd.forward(request, response);
+//                }
+//
+//            } else {
+//                RequestDispatcher rd = request.getRequestDispatcher("indexfb");
+//                rd.forward(request, response);
+//            }
+        }
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

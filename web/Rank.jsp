@@ -29,7 +29,7 @@
         
 
     </head>
-    <body style="background: url('img/fondo.jpeg') no-repeat center center fixed;">
+    <body style="background: url('img/jama.jpg') no-repeat center center fixed;">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header page-scroll">

@@ -4,9 +4,10 @@
     Author     : diegoalonso
 --%>
 <%
-    String nombre = (String)request.getSession().getAttribute("nombre");
-     String correo = (String)request.getSession().getAttribute("correo");
-    
+    String nombre = request.getParameter("nombre");
+     
+        String correo = request.getParameter("correo");
+        
     %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,7 +19,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div>
+            <h1>hola</h1>
         <h1 id="mensaje"><%= correo %></h1>
         <h2 id="mensaje1"><%= nombre %></h1>
+        </div>
     </body>
 </html>
