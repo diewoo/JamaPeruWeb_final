@@ -17,17 +17,21 @@ public class Platillo {
     private String imagen;
     private String tipo;
     private String tag;
+    private String estado;
+    private String post_id; 
 
     public Platillo() {
     }
 
-    public Platillo(int id, String nombre, String descripcion, String imagen, String tipo, String tag) {
+    public Platillo(int id, String nombre, String descripcion, String imagen, String tipo, String tag,String estado,String post_id) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.tipo = tipo;
         this.tag = tag;
+        this.estado=estado;
+        this.post_id=post_id;
     }
 
     public int getId() {
@@ -78,9 +82,27 @@ public class Platillo {
         this.tag = tag;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(String post_id) {
+        this.post_id = post_id;
+    }
+
     @Override
     public String toString() {
-        return "Platillo{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen + ", tipo=" + tipo + ", tag=" + tag + '}';
+        return "Platillo{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen + ", tipo=" + tipo + ", tag=" + tag + ", estado=" + estado + '}';
     }
+
+   
 
 }

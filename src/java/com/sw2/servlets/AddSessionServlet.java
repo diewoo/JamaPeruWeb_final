@@ -35,14 +35,16 @@ public class AddSessionServlet extends HttpServlet {
         int fail;
         String admin = "dgo250594@gmail.com";
         String passadmin = "diego123";
+
         if (request.getAttribute("usuario") != null) {
 
             Usuario usuario = (Usuario) request.getAttribute("usuario");
-
+            
             if (usuario.getCorreo().equalsIgnoreCase(admin)
                     && usuario.getPassword().equalsIgnoreCase(passadmin)) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("gestionPlatillo");
                 request.setAttribute("usuario", usuario);
+
                 dispatcher.forward(request, response);
             } else {
                 session.setAttribute("usuarioSes", usuario);

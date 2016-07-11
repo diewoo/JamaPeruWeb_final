@@ -17,9 +17,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
+        <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
 
     </head>
-    <script >
+    <script>
         var accessToken;
         window.fbAsyncInit = function () {
             FB.init({
@@ -79,7 +81,7 @@
 
 
         // POST A FEED WITH DIALOG using FB.ui
-        function postFeed2(x2, id) {
+        function postFeed2(x2, descripcion, pk_id) {
             FB.ui(
                     {
                         method: 'feed',
@@ -87,34 +89,78 @@
                         link: 'http://developers.facebook.com/docs/reference/dialogs/',
                         picture: x2,
                         caption: 'Reference Documentation',
-                        description: id
+                        description: descripcion
                     },
-                    function (response) {
-                        if (response && response.post_id) {
-                            alert('Succeeded to post');
-                            console.log(response.post_id);
-                        } else {
-                            alert('Failed to post');
-                        }
-                    }
+            function (response) {
+                if (response && response.post_id) {
+                    alert('Succeeded to post');
+                    location.href = 'postearServlet?idpost=' + response.post_id + '&pk_id=' + pk_id
+                    console.log(response.post_id);
+
+                } else {
+                    alert('Failed to post');
+                    console.log(response.post_id);
+                }
+            }
+            );
+        }
+        function obtenerlikes() {
+            FB.api(
+                    '/me',
+                    'GET',
+                    {"fields": "feed{likes.limit(100)}"},
+            function (response) {
+                // Insert your code here
+                JSON.stringify(response); 
+                console.log(JSON.stringify(response));
+            }
             );
         }
 
+        function displayLikes(iLikes) {
+            swal("Total de likes del post: " + iLikes);
+        }
+        function queryLikes(sResourceID, oCallback) {
 
-        (function () {
-            var e = document.createElement('script');
-            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-            e.async = true;
-            document.getElementById('fb-root').appendChild(e);
-        }());
-    </script>
+            var oCounter = {likes: 0};
 
+            // Consulta o número de likes do recurso
+            FB.api("/" + sResourceID + "/likes?limit=5000",
+                    function (oResponse) {
+                        outputLikers(oResponse.data);
+                        queryResponse(oCounter, oResponse.data.length, oResponse.paging.next, oCallback);
+                    }
+            );
+        }
+        function queryResponse(oCounter, iLikes, sNext, oCallback) {
+            oCounter.likes += iLikes;
 
-    <script >
-        $(document).ready(function () {
+            if (sNext != null) {
+                FB.api(sNext,
+                        function (oResponse) {
+                            outputLikers(oResponse.data);
+                            queryResponse(oCounter, oResponse.data.length, oResponse.paging.next, oCallback);
+                        }
+                );
+            }
+            else
+                oCallback(oCounter.likes);
+        }
+        function outputLikers(aData) {
+            for (var i = 0; i < aData.length; ++i) {
+                var oUser = aData[i];
+                console.log(oUser.name + "(" + oUser.id + ")");
+            }
+        }
+
+        <%--     $(document).ready(function () {
             $('#tabla1').stacktable();
-        });
+        });--%>
+
     </script>
+
+
+
     <script>
         $(window).bind("load", function () {
             // Cargar imagenes
@@ -126,6 +172,7 @@
 
     <body style="background:  url('img/jama.jpg') no-repeat center center fixed;">
         <div id="data"></div>
+        <div id="fb-root"></div>
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -145,6 +192,8 @@
                     <ul class="nav navbar-nav" >
 
                         <li class="active"><a style="background-color: #808000" href="gestionPlatillo"><p style="color: white;"><strong>Gestionar Platillos</strong></p></a></li> 
+
+                        <li ><a href="gestionPlatillosPosteados" >Platillos posteados  </a></li>
                         <li ><a href="LoginServlet" >Cerrar sesion</a></li>
                     </ul>
                 </div>
@@ -194,11 +243,14 @@
                                         <tr>
 
 
-                                            <td style="text-align: center"><p> <a  id="foto "style="color: blue" onclick="javascript:postFeed2('${x.imagen}', '${x.descripcion}')" /><strong>Postear facebook</strong></a></p>  </td>
+                                            <td style="text-align: center"><p> <a    id="foto "style="color: blue" onclick="javascript:postFeed2('${x.imagen}', '${x.descripcion}', '${x.id}')" /><strong>Postear facebook</strong></a></p>  </td>
                                             <td style="text-align: center"> <p style="color: red"> <a  style="color: red"href="crud?accion=eliminar&id=<c:out value="${x.id}" />"><strong>Eliminar</strong></a></p></td>
 
                                         </tr>
-
+                                        <tr>
+                                            <td style="text-align: center"><p> <a    id="foto "style="color: yellow" onclick="javascript:obtenerlikes()" /><strong>Contar likes</strong></a></p>  </td>
+                                            <td> <button onclick="queryLikes('${x.post_id}', displayLikes);">Consultar likes del post</button></td>
+                                        </tr>
 
 
                                     </tbody>
@@ -227,14 +279,7 @@
 
                         <ul class="list-inline ulf">
                             <li class="col-md-5 col-xs-12">
-                                <div >
-                                    <h5 id="idh6">
-                                        <img style="width: 200px;height: 100px ;border-radius: 5px;border:3px solid #666;" src="img/logo-JAMA.PE-BLOG-GASTRONOMICO-VIAJES-PERU.png" alt=""/>
 
-
-                                    </h5>
-
-                                </div> 
                             </li>
                             <li class="col-md-7 col-xs-12">
                                 <div >
@@ -257,6 +302,7 @@
 
         <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>        
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/stacktable.min.js" type="text/javascript"></script>
+        <script src="js/sweetalert.min.js" type="text/javascript"></script>
+        <script src='http://connect.facebook.net/en_US/all.js'></script>
     </body>
 </html>

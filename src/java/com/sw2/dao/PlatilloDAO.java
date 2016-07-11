@@ -179,7 +179,7 @@ public class PlatilloDAO {
 
         Connection con = null;
         String sql = "select  distinct p.idplatillo , p.nombre , p.descripcion, p.imagen ,p.tipo , p.tag \n"
-                + "from jamadatabase.usuarioxplatillo u inner join jamadatabase.platillo p on u.idplatillo =p.idplatillo\n"
+                + "from jamadatabase.usuarioxplatillo u inner join jamadatabase.platillo p on u.idplatillo =p.idplatillo\n  where p.estado='S'"
               ;
         PreparedStatement stmt = null;
         System.out.println(sql);
@@ -216,7 +216,52 @@ public class PlatilloDAO {
         }
         return platillos;
     }
-     
+      public List<Platillo> obtenerPlatillos_posteados() {
+        List<Platillo> platillos = new ArrayList();;
+        Platillo platillo = null;
+
+        ResultSet rs = null;
+
+        Connection con = null;
+        String sql = "select  distinct p.idplatillo, p.nombre , p.descripcion, p.imagen ,p.tipo , p.tag ,p.post_id\n"
+                + "from jamadatabase.usuarioxplatillo u inner join jamadatabase.platillo p on u.idplatillo =p.idplatillo\n  where p.estado='P'"
+              ;
+        PreparedStatement stmt = null;
+        System.out.println(sql);
+
+        try {
+            con = conn.getConnection();
+            stmt = con.prepareStatement(sql);
+            //stmt.setInt(1, pk_usu);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+               
+                platillo = new Platillo();
+                platillo.setId(rs.getInt(1));
+                platillo.setNombre(rs.getString(2));
+                platillo.setDescripcion(rs.getString(3));
+                platillo.setImagen(rs.getString(4));
+                platillo.setTipo(rs.getString(5));
+                platillo.setTag(rs.getString(6));
+                platillo.setPost_id(rs.getString(7));
+                platillos.add(platillo);
+           }
+
+        } catch (SQLException ex) {
+            System.out.println("Ocurrio un error SQL ");
+            ex.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+
+            }
+        }
+        return platillos;
+    }
      
      public void borrar(int id) {
         
@@ -247,6 +292,37 @@ public class PlatilloDAO {
                 }
         }
     
+    }
+      public void update(int pk_id,String post_id) {
+
+        Connection con = null;
+
+        String sql = "update  platillo set estado='P',post_id=? where idplatillo=? ";
+        
+        PreparedStatement stmt = null;
+
+        try {
+
+            con = conn.getConnection();
+            stmt = con.prepareStatement(sql);
+             stmt.setString(1, post_id);
+             stmt.setInt(2, pk_id);
+                 
+          
+            stmt.executeUpdate();
+            System.out.println(sql);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                con.close();
+                stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(PlatilloDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
 
 }

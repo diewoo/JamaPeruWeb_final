@@ -24,12 +24,14 @@ public class testDao {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        PlatilloDAO test = new PlatilloDAO();
-        List<Platillo> ventas =  test.obtenerPlatillos();
-        for (Platillo venta : ventas) {
-            System.out.println(venta);
-        }
+     PlatilloDAO test = new PlatilloDAO();
+//        List<Platillo> ventas =  test.obtenerPlatillos();
+//        for (Platillo venta : ventas) {
+//            System.out.println(venta);
+//        }
         
+     test.update(101, "12345_12133");
+     
         
         
         

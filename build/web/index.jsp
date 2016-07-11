@@ -22,7 +22,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
-
+        <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
     </head>
     <script>
         var valida = false;
@@ -107,7 +107,7 @@
                 </div>
                 <div class="container-fluid">
                     <div class="row">
-                        <form  id="forma1" method="POST" action="LoginServlet">
+                        <form  id="form" method="POST" action="LoginServlet">
                             <br>
                             <div class="col-xs-3"></div>
                             <div class="col-xs-6" style="">  
@@ -117,9 +117,9 @@
                                 <br>
                                 <br>
 
-                                <input type="text" placeholder="usuario" name="correo" class="form-control"><br>
-                                <input type="password" placeholder="password" name="password" class="form-control"><br>
-                                <button  type="submit"  class="btn btn-primary col-xs-4" style="border-radius: 15px" >Login</button>
+                                <input type="text" placeholder="usuario" name="correo"  id="usuario"class="form-control"><br>
+                                <input type="password" placeholder="password" name="password" id="password" class="form-control"><br>
+                                <button  type="submit" id="ingresar" class="btn btn-primary col-xs-4" style="border-radius: 15px" >Login</button>
                                 <div class="col-xs-4"></div>
                                 <a href="Registro.jsp" class="btn btn-warning col-xs-4" style="border-radius: 15px ">Registrarse</a>
                             </div>
@@ -185,12 +185,19 @@
         <script src="js/cbpAnimatedHeader.js" type="text/javascript"></script>
         <script src="js/classie.js" type="text/javascript"></script>
         <%-- jquery --%>
+        <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/sweetalert.min.js" type="text/javascript"></script>
+        
+                <script src="js/validaindex.js" type="text/javascript"></script>
+
         <%-- Bosstrap JavaScript --%>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <%-- Custom Theme JavaScript --%>
         <script src="js/freelancer.js" type="text/javascript"></script>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        
         <script src='http://connect.facebook.net/en_US/all.js'></script>
+        
     </body>
 </html>

@@ -48,6 +48,14 @@
         <servlet-name>RegistrofbServlet</servlet-name>
         <servlet-class>com.sw2.servlets.RegistrofbServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>postearServlet</servlet-name>
+        <servlet-class>com.sw2.servlets.postearServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>gestionPlatillosPosteados</servlet-name>
+        <servlet-class>com.sw2.servlets.gestionPlatillosPosteados</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>RegistrofbServlet</servlet-name>
         <url-pattern>/RegistrofbServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>postearServlet</servlet-name>
+        <url-pattern>/postearServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gestionPlatillosPosteados</servlet-name>
+        <url-pattern>/gestionPlatillosPosteados</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
