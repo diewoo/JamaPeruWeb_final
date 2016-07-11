@@ -7,6 +7,7 @@ package com.sw2.servlets;
 
 import com.sw2.bean.Usuario;
 import com.sw2.dao.UsuarioDAO;
+import com.sw2.dao.UsuarioDAOInterface;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,28 +33,19 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
 
+        RequestDispatcher dispatcher;
         String usuario = request.getParameter("correo");
         String password = request.getParameter("password");
-        if(password==null){
-            password="";
-        }
-        UsuarioDAO dao = new UsuarioDAO();
+        UsuarioDAOInterface dao = new UsuarioDAO();
         Usuario user = dao.obtenerUserXUsuario(usuario, password);
-        
-
         if (user != null) {
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("AddSessionServlet");
+            dispatcher = request.getRequestDispatcher("AddSessionServlet");
             request.setAttribute("usuario", user);
-            dispatcher.forward(request, response);
-            
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
+            dispatcher = request.getRequestDispatcher("index.jsp");
         }
-
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

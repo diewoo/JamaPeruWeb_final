@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="com.sw2.bean.Venta"%>
+<%@page import="com.sw2.bean.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <html>
@@ -21,21 +22,13 @@
         <link href="css/freelancer.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <%--
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link href="css/animate.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        --%>            
     </head>
 
     <%
-        List<Venta> ventas = (List<Venta>) request.getAttribute("ventas");
-        double gana = 1.0;
+        Usuario user = (Usuario) request.getSession().getAttribute("usuarioSes");
+        if (user != null) {
+            List<Venta> ventas = (List<Venta>) request.getAttribute("ventas");
+            double gana = 1.0;
     %>
 
     <body style="background: url('img/jama.jpg') no-repeat center center fixed;">
@@ -67,6 +60,7 @@
         <div class="container" style="margin-top: 250px; background: #149c82">
             <div class="row">
                 <div class="col-md-12">
+                    <%  if(ventas.size()!=0){ %>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -94,15 +88,16 @@
                             %>
                         </tbody>
                     </table>
+                    <% }else { %> <h1>Usted no tiene ventas registradas. </h1> <% } %>
                 </div>
-                        
-                    <div class="col-md-4">
-                        <label>
-                            GANANCIA TOTAL
-                        </label>
-                    </div>
+
+                <div class="col-md-4">
+                    <label>
+                        GANANCIA TOTAL
+                    </label>
+                </div>
                 <div class="col-md-8">
-                    
+
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -120,7 +115,8 @@
                 </div>
             </div>
         </div>
-    <%-- JavaScript --%>
+        <% } else { response.sendRedirect("Error.jsp");}%>
+        <%-- JavaScript --%>
         <script src="js/prefixfree.min.js"></script>
         <%-- Plugin JavaScript --%>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -132,6 +128,6 @@
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <%-- Custom Theme JavaScript --%>
         <script src="js/freelancer.js" type="text/javascript"></script>                        
-                            
+
     </body>
 </html>

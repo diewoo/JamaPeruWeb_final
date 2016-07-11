@@ -5,7 +5,10 @@
  */
 package com.sw2.servlets;
 
+import com.sw2.bean.Platillo;
+import com.sw2.bean.Usuario;
 import com.sw2.bean.Venta;
+import com.sw2.dao.PlatilloDAO;
 import com.sw2.dao.ProfitDAO;
 import java.io.IOException;
 import java.util.List;
@@ -34,14 +37,20 @@ public class ListaProfitServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
+        Usuario user = (Usuario) request.getSession().getAttribute("usuarioSes");
+        RequestDispatcher dispatcher;
         ProfitDAO dao = new ProfitDAO();
-        List<Venta> ventas = dao.getVentas(1);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ListaProfit.jsp");
-        request.setAttribute("ventas", ventas);
+        if (user != null) {
+            List<Venta> ventas = dao.getVentas(user.getIdusuarios());
+            dispatcher = request.getRequestDispatcher("ListaProfit.jsp");
+            request.setAttribute("ventas", ventas);
+
+        } else {
+            dispatcher = request.getRequestDispatcher("index.jsp");
+        }
         dispatcher.forward(request, response);
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

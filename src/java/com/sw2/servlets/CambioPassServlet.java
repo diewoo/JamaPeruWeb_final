@@ -6,8 +6,10 @@
 package com.sw2.servlets;
 
 import com.sw2.dao.UsuarioDAO;
+import com.sw2.dao.UsuarioDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,16 +32,19 @@ public class CambioPassServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String correo = request.getParameter("correo2");
         String contra = request.getParameter("contra");
         String contra2 = request.getParameter("contra2");
-        UsuarioDAO dao = new UsuarioDAO();
-        dao.actualizarContra(correo, contra);
-        
-        response.sendRedirect("PasswordCambiado.jsp");
-        
-        
+        RequestDispatcher dispatcher;
+        dispatcher = request.getRequestDispatcher("Error.jsp");
+        if (correo != null && contra != null && contra2 != null) {
+            UsuarioDAOInterface dao = new UsuarioDAO();
+            dao.actualizarContra(correo, contra);
+            dispatcher = request.getRequestDispatcher("PasswordCambiado.jsp");
+        }
+        dispatcher.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

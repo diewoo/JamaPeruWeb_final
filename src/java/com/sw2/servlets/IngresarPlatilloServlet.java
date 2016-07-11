@@ -9,6 +9,7 @@ import com.sw2.bean.Platillo;
 import com.sw2.bean.Usuario;
 import com.sw2.dao.PlatilloDAO;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,7 @@ public class IngresarPlatilloServlet extends HttpServlet {
         String descrip = request.getParameter("descrip");
         String imagen = request.getParameter("imagen");
         String tag = request.getParameter("tag");
+        RequestDispatcher dispatcher;
         if(nombre!=null &&
                 descrip!=null &&
                     imagen!=null &&
@@ -52,12 +54,11 @@ public class IngresarPlatilloServlet extends HttpServlet {
             dao.ingresarPlatillo(plat);
             int pkPlatillo = dao.lasInsertIdPlatillo();
             dao.ingresarUsuarioxPlatillo(pkPlatillo, user.getIdusuarios());
-            response.sendRedirect("ListarPlatillosServlet");
-            
+            dispatcher = request.getRequestDispatcher("ListarPlatillosServlet");
         }else{
-            
+            dispatcher = request.getRequestDispatcher("Error.jsp");
         }
-        
+         dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

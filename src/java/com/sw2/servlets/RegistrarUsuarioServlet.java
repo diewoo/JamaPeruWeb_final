@@ -8,7 +8,9 @@ package com.sw2.servlets;
 import com.sw2.bean.SendMail;
 import com.sw2.bean.Usuario;
 import com.sw2.dao.UsuarioDAO;
+import com.sw2.dao.UsuarioDAOInterface;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,13 +36,14 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         SendMail mail = new SendMail();
         Usuario user = new Usuario();
-        UsuarioDAO dao = new UsuarioDAO();
+        UsuarioDAOInterface dao = new UsuarioDAO();
         String correo = request.getParameter("correo");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String password = request.getParameter("password");
         String fecha = request.getParameter("fecha");
         String sexo = request.getParameter("sexo");
+        RequestDispatcher dispatcher;
         if (!correo.equalsIgnoreCase("")
                 && !nombre.equalsIgnoreCase("")
                 && !apellido.equalsIgnoreCase("")
@@ -56,22 +59,23 @@ public class RegistrarUsuarioServlet extends HttpServlet {
                 user.setSexo(request.getParameter("sexo"));
                 user.setTipo("F");
                 dao.crearUsuario(user);
-
                 try {
-                    
                     mail.setMensage("Te Acabas de registrar en JamaPeru app , disfrute la experiencia.");
                     mail.setSubject("Registro - JamaPeru");
                     mail.setTo(correo);//PP
                     mail.SendMail();
                 } catch (Exception e) {
-                    response.sendRedirect("ErrorCorreo.jsp");
+                    dispatcher = request.getRequestDispatcher("Error.jsp");
                 }
-
-                response.sendRedirect("index.jsp");
+                dispatcher = request.getRequestDispatcher("index.jsp");
+            }else{//Coreo ya registrado
+                dispatcher = request.getRequestDispatcher("Registro.jsp");
             }
-
+            dispatcher = request.getRequestDispatcher("Registro.jsp");
+        }else {//Complete los datos
+            dispatcher = request.getRequestDispatcher("Registro.jsp");
         }
-
+         dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,3 +1,5 @@
+
+<%@page import="com.sw2.bean.Usuario"%>
 <%@page import="com.sw2.bean.Platillo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -32,7 +34,9 @@
         </style>
         <%
             int cont = 1;
-            List<Platillo> platillos = (List<Platillo>) request.getAttribute("platillos");
+            Usuario user = (Usuario) request.getSession().getAttribute("usuarioSes");
+            if (user != null) {
+                List<Platillo> platillos = (List<Platillo>) request.getAttribute("platillos");
         %>
     </head>
     <body style="background: url('img/jama.jpg') no-repeat center center fixed;">
@@ -47,7 +51,6 @@
                     </button>
                     <a class="navbar-brand" href="#page-top">Jama App!</a>
                 </div>
-
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="">Cuenta <span class="sr-only">(current)</span></a></li>
@@ -62,55 +65,33 @@
             </div>
         </nav>
         <header style="background: url('../img/fondo.jpeg') no-repeat center center fixed;">
-
             <div class="container" style=" margin-top: 150px;" >
                 <div class="row">
                     <nav class="col-sm-5" >
                         <ul class="nav nav-pills nav-stacked" style="padding-top: 250px;">
 
-                            <%
-                                for (int i = 1; i <= platillos.size(); i++) {
-                            %>
-                            <li class="btn btn-primary"><a <% if (i == 1) {%>class="active"<% }%> href="#section<%=i%>"><%=platillos.get(i - 1).getNombre()%></a></li>
-                                <%
-                                    }
-                                %>
-                            <li class="btn btn-primary"><a href="AgregarPlatillo.jsp" value="Agregar Platillo"
-                                                           >+</a></li>        
-                        </ul>
-
-                        <ul></ul>
+                            <%for (int i = 1; i <= platillos.size(); i++) {%>
+                            <li class="btn btn-primary"><a <% if (i == 1) {%> class = "active"<% }%> href="#section<%=i%>"><%=platillos.get(i - 1).getNombre()%></a></li>
+                                <% } %>
+                            <li class="btn btn-primary"><a href="AgregarPlatillo.jsp" value="Agregar Platillo">+</a></li>        
+                        </ul><ul></ul>
                     </nav>
-                    <%
-                        if (platillos.size() != 0) {
-
-
-                    %>       
+                    <%if (platillos.size() != 0) {%>       
                     <div class="col-sm-7">
-
-                        <%                            for (Platillo plats : platillos) {
-                        %>
+                        <%for (Platillo plats : platillos) {%>
                         <div id="section<%=cont%>" class="section" style="padding-top: 20px;">    
                             <h1 style="margin-top: 70px;"><%=plats.getNombre()%></h1>
                             <img src="<%=plats.getImagen()%>"  height="50%" width="100%" style="padding-right: 10%; padding-left: 10%;">
                             <p><%=plats.getDescripcion()%></p>
                         </div>
-                        <%
-                                cont++;
-                            }
-                        %>
+                        <% cont++;
+                            }%>
                         <div></div>                     
                     </div>
-                    <%  } else {
-
-
-                    %>
-                    <h1>Usted no tiene platillos registrados.</h1> 
-                    <% }%>
-                    <div></div>
+                    <% } else { %><h1>Usted no tiene platillos registrados.</h1><% } %><div></div>
                 </div>
             </div>
-
+            <% } else {response.sendRedirect("Error.jsp");}%>
         </header>                  
         <%-- JavaScript --%>
         <script src="js/prefixfree.min.js"></script>

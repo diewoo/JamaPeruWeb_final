@@ -32,18 +32,11 @@
                                     <h2>Cambio de contraseña</h2>
                                     <p >Se envio un enlace de cambio a la direccion ingresada.</p>
                                     <div class="panel-body">
-
-                                       
-                                            <fieldset>
-
-                                                <div class="form-group">
-                                                    
-                                                    <a class="btn btn-lg btn-primary btn-block" href="index.jsp" > Regresar</a>
-                                                </div>
-
-                                            </fieldset>
-                                       
-
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <a class="btn btn-lg btn-primary btn-block" href="index.jsp" > Regresar</a>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                 </div>
                             </div>
@@ -52,10 +45,5 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </body>
 </html>

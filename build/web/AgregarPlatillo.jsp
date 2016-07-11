@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.sw2.bean.Usuario"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,6 +25,11 @@
 
     </head>
     <body style="background: url('img/jama.jpg') no-repeat center center fixed;">
+        <%
+
+            Usuario user = (Usuario) request.getSession().getAttribute("usuarioSes");
+            if (user != null) {
+        %>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header page-scroll">
@@ -95,6 +101,7 @@
 
             </form>
         </div>
+        
         <script type="text/javascript">
             document.getElementById("upload_widget_opener").addEventListener("click", function () {
 
@@ -107,6 +114,7 @@
 
             }, false);
         </script>
+        <% }else {response.sendRedirect("Error.jsp");}%>
         <%-- JavaScript --%>
         <script src="js/prefixfree.min.js"></script>
         <%-- Plugin JavaScript --%>

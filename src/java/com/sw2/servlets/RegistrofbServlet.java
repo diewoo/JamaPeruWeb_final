@@ -7,6 +7,7 @@ package com.sw2.servlets;
 
 import com.sw2.bean.Usuario;
 import com.sw2.dao.UsuarioDAO;
+import com.sw2.dao.UsuarioDAOInterface;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,16 +32,20 @@ public class RegistrofbServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String nombre = request.getParameter("nombre");
         String correo = request.getParameter("correo");
-        UsuarioDAO dao = new UsuarioDAO();
-        dao.RegistrarUsuarioFacebook(correo, nombre);
-        Usuario user = dao.obtenerUserXUsuarioxFb(correo);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("AddSessionServlet");
-        request.setAttribute("usuario", user);
+        RequestDispatcher dispatcher;
+        dispatcher = request.getRequestDispatcher("Registro.jsp");
+        if (nombre != null && correo != null) {
+            UsuarioDAOInterface dao = new UsuarioDAO();
+            dao.RegistrarUsuarioFacebook(correo, nombre);
+            Usuario user = dao.obtenerUserXUsuarioxFb(correo);
+            dispatcher = request.getRequestDispatcher("AddSessionServlet");
+            request.setAttribute("usuario", user);
+            
+        }
         dispatcher.forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

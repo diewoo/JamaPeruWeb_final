@@ -33,7 +33,7 @@ public class platilloPost extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         PlatilloDAO dao = new PlatilloDAO();
+        PlatilloDAO dao = new PlatilloDAO();
         List<Platillo> platillos = dao.obtenerPlatillos();
         RequestDispatcher dispatcher = request.getRequestDispatcher("gestionPlatillos.jsp");
         request.setAttribute("platillos", platillos);

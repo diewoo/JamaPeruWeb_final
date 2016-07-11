@@ -21,22 +21,20 @@ import java.util.logging.Logger;
  *
  * @author Diego
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements UsuarioDAOInterface{
 
     Conexion cone = new Conexion();
 
+    /**
+     *
+     * @param usu
+     * @param pass
+     * @return
+     */
+    @Override
     public Usuario obtenerUserXUsuario(String usu , String pass) {
 
         Usuario usuario = null;
-        int idusuario = 0;
-        String nombre = "";
-        String contra = "";
-        String apellido = "";
-        String correo = "";
-        String sexo = "";
-        String tipo = "";
-        String fecha_nac = "";
-        String password = "";
         ResultSet rs = null;
 
         Connection con = null;
@@ -55,22 +53,14 @@ public class UsuarioDAO {
 
             while (rs.next()) {
                 usuario = new Usuario();
-                idusuario = rs.getInt(1);
-                usuario.setIdusuarios(idusuario);
-                nombre = rs.getString(2);
-                usuario.setNombre(nombre);
-                apellido = rs.getString(3);
-                usuario.setApellido(apellido);
-                correo = rs.getString(4);
-                usuario.setCorreo(correo);
-                sexo = rs.getString(5);
-                usuario.setSexo(sexo);
-                tipo = rs.getString(6);
-                usuario.setTipo(tipo);
-                fecha_nac = rs.getString(7);
-                usuario.setFecha_nac(fecha_nac);
-                contra = rs.getString(8);
-                usuario.setPassword(contra);
+                usuario.setIdusuarios(rs.getInt(1));
+                usuario.setNombre(rs.getString(2));
+                usuario.setApellido(rs.getString(3));
+                usuario.setCorreo(rs.getString(4));
+                usuario.setSexo(rs.getString(5));
+                usuario.setTipo(rs.getString(6));
+                usuario.setFecha_nac(rs.getString(7));
+                usuario.setPassword(rs.getString(8));
             }
 
         } catch (SQLException ex) {
@@ -89,6 +79,13 @@ public class UsuarioDAO {
 
         return usuario;
     }
+
+    /**
+     *
+     * @param usu
+     * @return
+     */
+    @Override
     public Usuario obtenerUserXUsuarioxFb(String usu ) {
 
         Usuario usuario = null;
@@ -153,6 +150,7 @@ public class UsuarioDAO {
 
         return usuario;
     }
+    @Override
     public String validarCorreo(String correo) {
 
         
@@ -186,6 +184,7 @@ public class UsuarioDAO {
 
         return mail;
     }
+    @Override
     public void crearUsuario(Usuario usuario) {
         Connection con = cone.getConnection();
         PreparedStatement stmt1 = null;
@@ -225,6 +224,7 @@ public class UsuarioDAO {
         }
 
     }
+    @Override
     public void actualizarContra(String correo , String password){
           // 5.1 Interface Connection
          Connection con = cone.getConnection();
@@ -254,6 +254,7 @@ public class UsuarioDAO {
          }
      }
     }
+    @Override
     public List<Usuario> llamar() {
          List<Usuario> lista = new ArrayList<>();
          PreparedStatement stmt = null;
@@ -282,6 +283,7 @@ public class UsuarioDAO {
         }
        return lista;  
     }
+    @Override
     public void RegistrarUsuarioFacebook(String correo, String nombre){
         Connection con = cone.getConnection();
         PreparedStatement stmt1 = null;
@@ -319,4 +321,6 @@ public class UsuarioDAO {
             }
         }
     }
+    
+   
 }

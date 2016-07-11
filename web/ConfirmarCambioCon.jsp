@@ -17,15 +17,14 @@
 
         <title>Password</title>
     </head>
-    
+
     <%
         String correo = request.getParameter("correo");
-        %>
-    
+        if (correo != null) {
+    %>
     <body style="background:  url('img/jama.jpg') no-repeat center center fixed;">
         <br>
         <br>
-
         <div class="container-fluid" >
             <div class="row">
                 <div class="row">
@@ -64,10 +63,8 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </body>
+    <% } else {
+            response.sendRedirect("Error.jsp");
+        }%>
 </html>

@@ -37,11 +37,16 @@ public class ListarPlatillosServlet extends HttpServlet {
 
         Usuario user = (Usuario) request.getSession().getAttribute("usuarioSes");
         PlatilloDAO dao = new PlatilloDAO();
-        List<Platillo> platillos = dao.obtenerPlatillo(user.getIdusuarios());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ListarPlatillo.jsp");
-        request.setAttribute("platillos", platillos);
+        RequestDispatcher dispatcher;
+        if (user != null) {
+            List<Platillo> platillos = dao.obtenerPlatillo(user.getIdusuarios());
+            dispatcher = request.getRequestDispatcher("ListarPlatillo.jsp");
+            request.setAttribute("platillos", platillos);
+            
+        } else {
+            dispatcher = request.getRequestDispatcher("index.jsp");
+        }
         dispatcher.forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

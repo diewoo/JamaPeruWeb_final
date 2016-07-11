@@ -32,22 +32,22 @@ public class postearServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        String post_id = request.getParameter("idpost");
+        Integer pk_id = Integer.parseInt(request.getParameter("pk_id"));
+        RequestDispatcher dispatcher;
         
-        String post_id=request.getParameter("idpost");
-       Integer pk_id=Integer.parseInt(request.getParameter("pk_id"));
-       
-        PlatilloDAO dao=new PlatilloDAO();
-        dao.update( pk_id,post_id);
-        Usuario u=new Usuario();
-         u.setCorreo("dgo250594@gmail.com");
-         u.setPassword("diego123");
-          request.setAttribute("usuario", u);
-         RequestDispatcher dispatcher = request.getRequestDispatcher("AddSessionServlet");
-         
-         
-                 
-         dispatcher.forward(request, response);
-      
+        if (post_id != null && pk_id != null) {
+            PlatilloDAO dao = new PlatilloDAO();
+            dao.update(pk_id, post_id);
+            dispatcher = request.getRequestDispatcher("gestionPlatillo");
+
+        }else{
+            dispatcher = request.getRequestDispatcher("index.jsp");
+        }
+
+        dispatcher.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

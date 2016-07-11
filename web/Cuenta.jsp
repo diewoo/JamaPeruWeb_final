@@ -22,21 +22,13 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/cuenta.css" rel="stylesheet" type="text/css"/>
-        <%--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link href="css/animate.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        --%>
+
     </head>
     <body style="background:  url('img/jama.jpg') no-repeat center center fixed;">
         <%
+
             Usuario user = (Usuario) request.getSession().getAttribute("usuarioSes");
+            if (user != null) {
         %>
         <nav class="navbar navbar-default navbar-fixed-top">
 
@@ -111,9 +103,7 @@
                 </form>
             </div>
         </div>
-
-
-
+        <%}else {response.sendRedirect("Error.jsp");}%>
         <%-- JavaScript --%>
         <script src="js/prefixfree.min.js"></script>
         <%-- Plugin JavaScript --%>

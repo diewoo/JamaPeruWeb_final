@@ -32,29 +32,23 @@ public class AddSessionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        int fail;
-        String admin = "dgo250594@gmail.com";
-        String passadmin = "diego123";
-
+        RequestDispatcher dispatcher;
         if (request.getAttribute("usuario") != null) {
 
             Usuario usuario = (Usuario) request.getAttribute("usuario");
+            session.setAttribute("usuarioSes", usuario);
             
-            if (usuario.getCorreo().equalsIgnoreCase(admin)
-                    && usuario.getPassword().equalsIgnoreCase(passadmin)) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("gestionPlatillo");
-                request.setAttribute("usuario", usuario);
-
-                dispatcher.forward(request, response);
+            if (usuario.getTipo().equalsIgnoreCase("A")) {
+                dispatcher = request.getRequestDispatcher("gestionPlatillo");
             } else {
-                session.setAttribute("usuarioSes", usuario);
-                response.sendRedirect("Cuenta.jsp");
+                dispatcher = request.getRequestDispatcher("Cuenta.jsp");
             }
+            dispatcher.forward(request, response);
 
         } else {
-            fail = 1;
+            dispatcher = request.getRequestDispatcher("index.jsp");
         }
-
+            dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -8,8 +8,10 @@ package com.sw2.servlets;
 import com.sw2.bean.SendMail;
 import com.sw2.bean.Usuario;
 import com.sw2.dao.UsuarioDAO;
+import com.sw2.dao.UsuarioDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,25 +36,28 @@ public class RestorePassServlet extends HttpServlet {
             throws ServletException, IOException {
         SendMail mail = new SendMail();
         String correo = request.getParameter("correo");
-        UsuarioDAO dao = new UsuarioDAO();
-        String carreoBack = dao.validarCorreo(correo);
-        if(!carreoBack.equalsIgnoreCase("")){
-            try {
-                    mail.setMensage("Ingrese al siguiente link para cambiar su contraseña."+"\n"+
-                            "http://jamaserverweb.azurewebsites.net/jamawebapp/ConfirmarCambioCon.jsp?correo="+correo);
+        RequestDispatcher dispatcher;
+        dispatcher = request.getRequestDispatcher("Error.jsp");
+        if (correo != null) {
+            UsuarioDAOInterface dao = new UsuarioDAO();
+            String carreoBack = dao.validarCorreo(correo);
+            if (!carreoBack.equalsIgnoreCase("")) {
+                try {
+                    mail.setMensage("Ingrese al siguiente link para cambiar su contraseña." + "\n"
+                            + "http://jamaserverweb.azurewebsites.net/jamawebapp/ConfirmarCambioCon.jsp?correo=" + correo);
                     mail.setSubject("Cambio de contraseña - JamaPeru");
                     mail.setTo(correo);
                     mail.SendMail();
                 } catch (Exception e) {
-                    response.sendRedirect("ErrorCorreo.jsp");
+                    dispatcher = request.getRequestDispatcher("Error.jsp");
                 }
-            response.sendRedirect("CambioPassword.jsp");
-        }else {
-            
+                dispatcher = request.getRequestDispatcher("CambioPassword.jsp");
+            } else {
+                dispatcher = request.getRequestDispatcher("Password.jsp");
+            }
         }
-        
-        
-        
+         dispatcher.forward(request, response);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

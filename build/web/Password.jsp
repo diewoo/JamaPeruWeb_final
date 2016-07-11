@@ -20,7 +20,6 @@
     <body style="background:  url('img/jama.jpg') no-repeat center center fixed;">
         <br>
         <br>
-
         <div class="container-fluid" >
             <div class="row">
                 <div class="row">
@@ -56,10 +55,5 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </body>
 </html>

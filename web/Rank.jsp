@@ -18,17 +18,8 @@
         <link href="css/freelancer.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <%--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link href="css/animate.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        --%>
-        
-
     </head>
+
     <body style="background: url('img/jama.jpg') no-repeat center center fixed;">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -55,7 +46,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container"style="margin-top: 100px;"> 
+        <div class="container" style="margin-top: 100px;"> 
             <div class="row">
                 <div class="col-md-12">
                     <h2>Lista chef</h2>
