@@ -59,11 +59,14 @@ public class RegistrarUsuarioServlet extends HttpServlet {
                 user.setSexo(request.getParameter("sexo"));
                 user.setTipo("F");
                 dao.crearUsuario(user);
+                
                 try {
-                    mail.setMensage("Te Acabas de registrar en JamaPeru app , disfrute la experiencia.");
-                    mail.setSubject("Registro - JamaPeru");
+                    //mail.setMensage("Te Acabas de registrar en JamaPeru app , disfrute la experiencia.");
+                    
+                    mail.setSubject("Registro - JamaPeru ");
+                    
                     mail.setTo(correo);//PP
-                    mail.SendMail();
+                    mail.SendMail(nombre);
                 } catch (Exception e) {
                     dispatcher = request.getRequestDispatcher("Error.jsp");
                 }

@@ -33,12 +33,13 @@ import javax.mail.internet.MimeMessage;
  * @author cvalencia
  */
 public class SendMail {
-    
+    Usuario u=new Usuario();
     public static String Username = "jamaperufood@gmail.com";
     public static String PassWord = "jamaperuweb";
     String Mensage = "";
     String To = "";
     String Subject = "";
+    String content="";
 
     public String getMensage() {
         return Mensage;
@@ -65,7 +66,8 @@ public class SendMail {
     }
     
     
-    public void SendMail() {
+    
+    public void SendMail(String nombre) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -87,6 +89,56 @@ public class SendMail {
                     InternetAddress.parse(To));
             message.setSubject(Subject);
             message.setText(Mensage);
+            message.setContent("<head>\n" +
+            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+               "<link href=\"css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+"        <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\"/>\n" +
+"    </head>\n" +
+"    <body>\n" +
+"\n" +
+"        <div class=\"col-xs-12\">\n" +
+"            <div class=\"container col-xs-6\" style=\"background-color: #66ff66\">\n" +
+"\n" +
+"\n" +
+"                <div class=\"row\">\n" +
+"                    <h1 class=\"col-xs-12\">Bienvenido a Jama Peru: </h1>\n" +"<h1>"+nombre+"</h1>"+
+"                    <div class=\"col-xs-6\">\n" +
+"                        <img  class=\" img-responsive \"  style=\"border: 5px solid #666 ;width: auto\" src=\"https://scontent-mia1-1.xx.fbcdn.net/v/t34.0-12/13672494_1374774765871941_93328390_n.png?oh=3ed5e9792d30b02f9b3baccfad1cdf44&oe=57876B48\"  alt=\"\"/>\n" +
+"                    </div>\n" +
+"                    <div  class=\"col-xs-12\"   style=\"background-color: #66ff66\" >\n" +
+"                        <h1> Gracias por Registrarte!</h1>\n" +
+"                    </div>\n" +
+"\n" +
+"\n" +
+"\n" +
+"\n" +
+"                </div>\n" +
+"                \n" +
+"             \n" +
+"            <div class=\" col-xs-6\" style=\"background-color: #ffffff\">\n" +
+"                </div>\n" +
+"            </div>\n" +
+"        </div>     ","text/html");
+//            message.setContent(" <head>\n"+
+//                    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"+
+//                    "<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\"/></head>\n"+
+//                    "\n"+"<h1>Bienvenido a Jama Peru</h1>"+"<h1>"+nombre+"</h1>"+
+//                            "<body>"+"<div class=\"container\">"+
+//                            "<img src=\"https://scontent-mia1-1.xx.fbcdn.net/v/t34.0-12/13672494_1374774765871941_93328390_n.png?oh=3ed5e9792d30b02f9b3baccfad1cdf44&oe=57876B48 \" alt=\"\"/>\n"+
+//                            "\n" +
+//                   " <div class=\"container\n>"+
+//"        <div  class=\"col-md-6   style=\"background-color: #66ff66\" >\n"+
+//                            "<div class=\"col-md-6  style=\"background-color: #ccff66;padding: 5 px\">Gracias<br> por<br> Registrarse<br>\n" +
+//"             </div>\n"+
+//                        " </div>\n" +
+//"       \n" +
+//"        \n" +
+//"        \n" +
+//"        </div>\n"+
+//                    
+//             "        </div>\n"       
+//                    +"</body>\n"    ,
+//             "text/html");
 
             Transport.send(message);
             
@@ -96,6 +148,36 @@ public class SendMail {
         }
     }
     
+    public void SendMail2() {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(Username, PassWord);
+                    }
+                });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(Username));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(To));
+            message.setSubject(Subject);
+            message.setText(Mensage);
+           
+            Transport.send(message);
+            
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
     
     
 }

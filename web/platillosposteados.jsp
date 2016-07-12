@@ -225,6 +225,7 @@
                                             <td style="color: #000000" style="width: 50%;text-align: center"><strong style="text-align: center">Tag </strong></td>
                                             <td style="width: 50%;text-align: center"> 
                                                 <strong> ${x.tag}</strong> </td>
+                                            <%-- <td> <strong>${x.post_id}</strong></td>--%>
                                             
                                         </tr>
                                         <tr>
@@ -236,7 +237,7 @@
                                         </tr>
                                         <tr>
                                             <td style="text-align: center"><p> <a    id="foto "style="color: yellow" /><strong>Contar likes</strong></a></p>  </td>
-                                            <td> <a onclick="queryLikes('${x.post_id}', displayLikes);">Consultar likes del post</a></td>
+                                            <td> <a onclick="queryLikes('1082934421722645_1373808005968617', displayLikes);">Consultar likes del post</a></td>
                                     </tr>
 
 

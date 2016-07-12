@@ -20,9 +20,18 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
+        <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>    
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+       
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
     </head>
     <script>
+
         var valida = false;
         window.fbAsyncInit = function () {
             FB.init({
@@ -45,7 +54,7 @@
                         console.log(response.name);
                         console.log(response);
                         valida = true;
-                        
+
                         location.href = 'RegistrofbServlet?correo=' + response.email + '&nombre=' + response.name;
 
                     }, {scope: 'email'});
@@ -58,6 +67,7 @@
             });
         }
     </script>
+
     <body style="background: url('img/jama.jpg') no-repeat center center fixed;">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -87,18 +97,14 @@
             </div>
         </nav>
         <header>
-            <div class="container" style="margin-top: 100px;">
+            
                 <form class="form-horizontal" id="form" method="post" action="RegistrarUsuarioServlet" >
-                    <div class="form-group" style="padding-top: 30px">
+                    <div class="container" style="margin-top: 30px;">
+                    <div class="form-group" style="padding-top: 0px">
                         <a style="margin-left:30%; width:40% ; margin-right: 50%;border-radius: 15px" onclick="javascript:login()" class="btn btn-info">Registro con facebook</a>
                     </div>
                     <legend ><p style="text-justify: auto;text-align: center;">Registrate con tu dirección de email</p></legend>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label ">Correo:</label>
-                        <div  style="margin-top: auto "class="col-md-10 ">
-                            <input type="text" name="correo" class="form-control" id="corrreo" >
-                        </div>
-                    </div>
+
 
                     <div style="margin-top: auto"class="form-group">
                         <label  class="col-md-2 control-label">Nombre:</label>
@@ -107,20 +113,18 @@
                         </div>
                     </div> 
                     <div style="margin-top: auto"class="form-group">
-                        <label  class="col-md-2 control-label">Sexo:</label>
-                        <div class="col-md-1 ">
-                            <select class="form-control" id="sexo" name="sexo">
-                                <option>M</option>
-                                <option>F</option>
-                            </select>
-                        </div>
-                    </div> 
-                    <div style="margin-top: auto"class="form-group">
                         <label  class="col-md-2 control-label">Apellido:</label>
                         <div class="col-md-10 ">
                             <input type="text" class="form-control" id="apellido" name="apellido" >
                         </div>
                     </div> 
+                    <div class="form-group">
+                        <label class="col-md-2 control-label ">Correo:</label>
+                        <div  style="margin-top: auto "class="col-md-10 ">
+                            <input type="text" name="correo" class="form-control" id="corrreo" >
+                        </div>
+                    </div>
+
                     <div  style="margin-top: auto"class="form-group">
                         <label  class="col-md-2 control-label">Contraseña:</label>
                         <div class="col-md-5 ">
@@ -133,22 +137,45 @@
                             <input type="password" class="form-control" id="conpassword" name="conpassword" >
                         </div>
                     </div>  
+                    <div style="margin-top: auto"class="form-group">
+                        <label  class="col-md-2 control-label">Sexo:</label>
+                        <div class="col-md-1 ">
+                            <select class="form-control" id="sexo" name="sexo">
+                                <option>M</option>
+                                <option>F</option>
+                            </select>
+                        </div>
+                    </div>
                     <div  style="margin-top: auto"class="form-group">
                         <label  class="col-md-2 control-label">Fecha de Nacimiento:</label>   
                         <div class="col-md-10 ">
-                            <input class="form-control" type="text" id="datepicker" name="fecha">
+
+                            <div id="datepicker" class="input-group date" data-date-format="dd/mm/yyyy">
+                                <input class="form-control" type="text"  name="fecha" id="datepicker2 "
+                                       readonly />
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+
 
                         </div>
-                    </div>
-                    <div style="margin-top: auto"class="form-group">
+
+                        </div>
+                    <div style="padding-top: 20px"class="form-group">
                         <div  class="col-md-12">
                             <input style="width: 50%; margin-left: 25%;margin-right: 25%;" type="submit" class="btn btn-warning" id="ingresar"  value="Registrarse"/>
+
                         </div>
                     </div>
+                    
+                    </div>
+                    
+                    
+                    </form>
+             
 
-                </form>
+                
 
-            </div>
+
         </header>
         <footer class="text-center" id="foot-page">
             <div class="footer-above">
@@ -195,18 +222,29 @@
         <%-- JavaScript --%>
         <script src="js/prefixfree.min.js"></script>
         <%-- Plugin JavaScript --%>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
         <script src="js/cbpAnimatedHeader.js" type="text/javascript"></script>
         <script src="js/classie.js" type="text/javascript"></script>
         <%-- jquery --%>
-        <script src="js/jquery.js" type="text/javascript"></script>
+
         <%-- Bosstrap JavaScript --%>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <%-- Custom Theme JavaScript --%>
         <script src="js/freelancer.js" type="text/javascript"></script>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
         <script src='http://connect.facebook.net/en_US/all.js'></script>
 
+        <script src="js/sweetalert.min.js" type="text/javascript"></script>
+        <script src="js/validaregistro.js" type="text/javascript"></script>   
+        <script>
+                            $(document).ready(function () {
+                                $("#datepicker").datepicker({
+                                    autoclose: true,
+                                    todayHighlight: true
+                                }).datepicker('update', new Date());
+                                ;
+                            });
+        </script>
     </body>
 
 </html>

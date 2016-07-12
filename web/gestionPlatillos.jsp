@@ -239,6 +239,7 @@
                                             <td style="color: #000000" style="width: 50%;text-align: center"><strong style="text-align: center">Tag </strong></td>
                                             <td style="width: 50%;text-align: center"> 
                                                 <strong> ${x.tag}</strong> </td>
+                                    
                                         </tr>
                                         <tr>
 
@@ -249,7 +250,7 @@
                                         </tr>
                                         <tr>
                                             <td style="text-align: center"><p> <a    id="foto "style="color: yellow" onclick="javascript:obtenerlikes()" /><strong>Contar likes</strong></a></p>  </td>
-                                            <td> <button onclick="queryLikes('${x.post_id}', displayLikes);">Consultar likes del post</button></td>
+                                            <td> <button onclick="queryLikes('', displayLikes);">Consultar likes del post</button></td>
                                         </tr>
 
 

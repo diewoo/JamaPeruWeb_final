@@ -47,7 +47,8 @@ public class RestorePassServlet extends HttpServlet {
                             + "http://jamaserverweb.azurewebsites.net/jamawebapp/ConfirmarCambioCon.jsp?correo=" + correo);
                     mail.setSubject("Cambio de contraseña - JamaPeru");
                     mail.setTo(correo);
-                    mail.SendMail();
+                    
+                    mail.SendMail2();
                 } catch (Exception e) {
                     dispatcher = request.getRequestDispatcher("Error.jsp");
                 }

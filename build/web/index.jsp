@@ -12,7 +12,7 @@
 
 
         <title>Jama App!</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
         <%-- Fuentes --%>
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -20,10 +20,10 @@
         <%-- Css --%>
         <link href="css/freelancer.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+       
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
         <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
-    </head>
+        <link href="css/datepicker.css" rel="stylesheet" type="text/css"/>
     <script>
         var valida = false;
         window.fbAsyncInit = function () {
@@ -64,7 +64,9 @@
             });
         }
     </script>
-    <body  id="page-top"style="background: url('img/jama.jpg') no-repeat center center fixed;">
+    </head>
+   
+    <body  id="page-top" style="background: url('img/jama.jpg') no-repeat center center fixed;">
         <div id="fb-root"></div>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -117,7 +119,7 @@
                                 <br>
                                 <br>
 
-                                <input type="text" placeholder="usuario" name="correo"  id="usuario"class="form-control"><br>
+                                <input type="text" placeholder="usuario" name="correo"  id="usuario" class="form-control"><br>
                                 <input type="password" placeholder="password" name="password" id="password" class="form-control"><br>
                                 <button  type="submit" id="ingresar" class="btn btn-primary col-xs-4" style="border-radius: 15px" >Login</button>
                                 <div class="col-xs-4"></div>
