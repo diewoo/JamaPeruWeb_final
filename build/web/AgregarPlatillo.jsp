@@ -20,7 +20,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
          <script src="js/cloudinary.js" type="text/javascript"></script>
-       
+         <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
+         <script src="js/sweetalert.min.js" type="text/javascript"></script>
         
 
     </head>
@@ -59,10 +60,10 @@
 
             <form class="form-horizontal" id="form" method="post" action="IngresarPlatilloServlet" >
 
-                <legend ><p style="text-justify: auto;text-align: center;color: black"><strong>Ingresar Platillo</strong></p></legend>
+                <legend> <p style="text-justify: auto;text-align: center;color: black"><strong>Ingresar Platillo</strong></p></legend>
                 <div class="form-group">
                     <label class="col-md-2 control-label  " style="color: black"><strong>Nombre:</strong> </label>
-                    <div  style="margin-top: auto "class="col-md-10 ">
+                    <div  style="margin-top: auto " class="col-md-10 ">
                         <input type="text" name="nombre" class="form-control" id="nombre" >
                     </div>
                 </div>
@@ -70,7 +71,7 @@
                 <div style="margin-top: auto"class="form-group">
                     <label  class="col-md-2 control-label" style="color: black"><strong>Descripcion:</strong> </label>
                     <div class="col-md-10">
-                        <textarea style="height: 400px;" type="text" class="form-control" id="descrip" name="descrip"  ></textarea>
+                        <textarea style="height: 400px;" type="text" class="form-control" id="descrip" name="descrip" ></textarea>
                     </div>
                 </div> 
                 <div style="margin-top: auto"class="form-group">
@@ -89,10 +90,11 @@
                             <option>MARINO</option>
                             <option>CRIOLLO</option>
                             <option>LIGHT</option>
+                            
                         </select>
                     </div>
                 </div> 
-                <div style="margin-top: auto"class="form-group">
+                <div style="margin-top: auto" class="form-group">
                     <div  class="col-md-12">
                         <input style="width: 50%; margin-left: 25%;margin-right: 25%;" type="submit" class="btn btn-success" id="ingresar"  value="Publicar"/>
 
@@ -122,10 +124,11 @@
         <script src="js/cbpAnimatedHeader.js" type="text/javascript"></script>
         <script src="js/classie.js" type="text/javascript"></script>
         <%-- jquery --%>
-        <script src="js/jquery.js" type="text/javascript"></script>
+        
         <%-- Bosstrap JavaScript --%>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <%-- Custom Theme JavaScript --%>
         <script src="js/freelancer.js" type="text/javascript"></script>
+        <script src="js/validaingresar.js" type="text/javascript"></script>
     </body>
 </html>

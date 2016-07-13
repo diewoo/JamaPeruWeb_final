@@ -33,21 +33,21 @@ public class testDao1 {
 //            System.out.println(td1);
 //        }
         
-        //SendMail send=new SendMail();
-      //  send.SendMail();
+        SendMail send=new SendMail();
+       send.SendMail2();
         
-        UsuarioDAO u=new UsuarioDAO();
-        
-     Usuario u1=u.obtenerUserXUsuarioxFb("dgo250594@gmail.com");
-        System.out.println(u1);
-        
-        UsuarioDAO test=new UsuarioDAO();
-              List<Usuario> ventas =  test.llamar();
-for (Usuario venta : ventas) {
-         System.out.println(venta);
-      }
-        
-        
-    }
+//        UsuarioDAO u=new UsuarioDAO();
+//        
+//     Usuario u1=u.obtenerUserXUsuarioxFb("dgo250594@gmail.com");
+//        System.out.println(u1);
+//        
+//        UsuarioDAO test=new UsuarioDAO();
+//              List<Usuario> ventas =  test.llamar();
+//for (Usuario venta : ventas) {
+//         System.out.println(venta);
+//      }
+//        
+//        
+//    }
     
-}
+    }}
