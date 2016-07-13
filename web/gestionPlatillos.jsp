@@ -19,6 +19,7 @@
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
         <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <script src="js/sweetalert.min.js" type="text/javascript"></script>
 
     </head>
     <script>
@@ -93,12 +94,12 @@
                     },
             function (response) {
                 if (response && response.post_id) {
-                    alert('Succeeded to post');
+                   swal('Succeeded to post');
                     location.href = 'postearServlet?idpost=' + response.post_id + '&pk_id=' + pk_id
                     console.log(response.post_id);
 
                 } else {
-                    alert('Failed to post');
+                    swal('Failed to post');
                     console.log(response.post_id);
                 }
             }
@@ -245,13 +246,13 @@
 
 
                                             <td style="text-align: center"><p> <a    id="foto "style="color: blue" onclick="javascript:postFeed2('${x.imagen}', '${x.descripcion}', '${x.id}')" /><strong>Postear facebook</strong></a></p>  </td>
-                                            <td style="text-align: center"> <p style="color: red"> <a  style="color: red"href="crud?accion=eliminar&id=<c:out value="${x.id}" />"><strong>Eliminar</strong></a></p></td>
+                                         <!-- <td style="text-align: center"> <p style="color: red"> <a  style="color: red"href="crud?accion=eliminar&id=<%--<c:out value="${x.id}" />">--%><strong>Eliminar</strong></a></p></td> -->
 
                                         </tr>
-                                        <tr>
+                                   <!--     <tr>
                                             <td style="text-align: center"><p> <a    id="foto "style="color: yellow" onclick="javascript:obtenerlikes()" /><strong>Contar likes</strong></a></p>  </td>
                                             <td> <button onclick="queryLikes('', displayLikes);">Consultar likes del post</button></td>
-                                        </tr>
+                                        </tr> -->
 
 
                                     </tbody>
@@ -287,7 +288,7 @@
                                     <h5 id="idh6" style="text-align: center">
                                         <br ><p style="color: #000000;"><strong >Integrantes:</strong></p> <br >   <p style="color: #000000;"><strong >- Miguel De La Torre  - Christian Valencia  - Miguel Bernedo - Diego Renteria</strong></p><br >
                                         <p style="color: #000000;">  <br><strong>- Diego Renteria - Diego Rojas - Marco Payano - Jordi Apaclla</strong></p><br>
-                                        <br >- Marco Luna - falta uno <>
+                                        <p style="color: #000000;"> <br ><strong>- Marco Luna -Steve Rivera</strong></p>
                                     </h5>                                             
                                 </div>  
                             </li>

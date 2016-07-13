@@ -19,10 +19,10 @@
         <link href="css/freelancer.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-         <script src="js/cloudinary.js" type="text/javascript"></script>
-         <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
-         <script src="js/sweetalert.min.js" type="text/javascript"></script>
-        
+        <script src="js/cloudinary.js" type="text/javascript"></script>
+        <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <script src="js/sweetalert.min.js" type="text/javascript"></script>
+
 
     </head>
     <body style="background: url('img/jama.jpg') no-repeat center center fixed;">
@@ -85,12 +85,13 @@
                     <label  class="col-md-2 control-label" style="color: black"><strong>Categoria:</strong></label>
                     <div class="col-md-5 ">
                         <select class="form-control" id="tag" name="tag">
-                            <option>PASTAS</option>
-                            <option>HAMBURGUESAS</option>
-                            <option>MARINO</option>
-                            <option>CRIOLLO</option>
-                            <option>LIGHT</option>
-                            
+                            <option>pasta</option>
+                            <option>hamburguesa</option>
+                            <option>marino</option>
+                            <option>criollo</option>
+                            <option>light</option>
+                            <option>postre</option>
+
                         </select>
                     </div>
                 </div> 
@@ -103,20 +104,22 @@
 
             </form>
         </div>
-        
+
         <script type="text/javascript">
             document.getElementById("upload_widget_opener").addEventListener("click", function () {
 
                 cloudinary.openUploadWidget({cloud_name: 'jamacomida', upload_preset: 'jrve2f6q'},
-                        function (error, result) {
-                            console.log(error, result);
-                            console.log(result[0].secure_url);
-                            $("#imagen").val(result[0].secure_url);
-                        });
+                function (error, result) {
+                    console.log(error, result);
+                    console.log(result[0].secure_url);
+                    $("#imagen").val(result[0].secure_url);
+                });
 
             }, false);
         </script>
-        <% }else {response.sendRedirect("Error.jsp");}%>
+        <% } else {
+                response.sendRedirect("Error.jsp");
+            }%>
         <%-- JavaScript --%>
         <script src="js/prefixfree.min.js"></script>
         <%-- Plugin JavaScript --%>
@@ -124,7 +127,7 @@
         <script src="js/cbpAnimatedHeader.js" type="text/javascript"></script>
         <script src="js/classie.js" type="text/javascript"></script>
         <%-- jquery --%>
-        
+
         <%-- Bosstrap JavaScript --%>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <%-- Custom Theme JavaScript --%>

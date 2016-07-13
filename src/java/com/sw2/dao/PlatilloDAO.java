@@ -6,6 +6,7 @@
 package com.sw2.dao;
 
 import com.sw2.bean.Platillo;
+import com.sw2.bean.Rancking;
 import com.sw2.conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -74,8 +75,8 @@ public class PlatilloDAO {
         Connection con = conn.getConnection();
         PreparedStatement stmt1 = null;
 
-        String sql1 = "INSERT INTO platillo  ( nombre, descripcion , imagen ,tipo , tag"
-                + " ) VALUES (?,?,?,?,?)";
+        String sql1 = "INSERT INTO platillo  ( nombre, descripcion , imagen ,tipo , tag,estado"
+                + " ) VALUES (?,?,?,?,?,?)";
 
         // Obtener la conexion
         try {
@@ -86,6 +87,7 @@ public class PlatilloDAO {
             stmt1.setString(3, platillo.getImagen());
             stmt1.setString(4, "U");
             stmt1.setString(5, platillo.getTag());
+            stmt1.setString(6, "S");
             int rc1 = stmt1.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Ocurrio un error SQL ");
@@ -177,8 +179,8 @@ public class PlatilloDAO {
         ResultSet rs = null;
 
         Connection con = null;
-        String sql = "select  distinct p.idplatillo , p.nombre , p.descripcion, p.imagen ,p.tipo , p.tag \n"
-                + "from jamadatabase.usuarioxplatillo u inner join jamadatabase.platillo p on u.idplatillo =p.idplatillo\n  where p.estado='S'";
+        String sql = "select  idplatillo , nombre , descripcion, imagen ,tipo , tag \n"
+                + "from jamadatabase.platillo   where estado='S'";
         PreparedStatement stmt = null;
         System.out.println(sql);
 
@@ -218,12 +220,16 @@ public class PlatilloDAO {
     public List<Platillo> obtenerPlatillos_posteados() {
         List<Platillo> platillos = new ArrayList();;
         Platillo platillo = null;
+        
 
         ResultSet rs = null;
 
         Connection con = null;
-        String sql = "select  distinct p.idplatillo, p.nombre , p.descripcion, p.imagen ,p.tipo , p.tag ,p.post_id\n"
-                + "from jamadatabase.usuarioxplatillo u inner join jamadatabase.platillo p on u.idplatillo =p.idplatillo\n  where p.estado='P'";
+        String sql = "select  a.idplatillo,a.nombre ,a.descripcion, a.tag , a.imagen , c.puesto,c.cantidad_likes  from \n"
+                + "	jamadatabase.rancking c\n"
+                + "	inner join jamadatabase.carta b on b.idcarta=c.idcarta\n"
+                + "    inner join jamadatabase.platillo a on a.idplatillo=b.idplatillo\n";
+
         PreparedStatement stmt = null;
         System.out.println(sql);
 
@@ -239,10 +245,13 @@ public class PlatilloDAO {
                 platillo.setId(rs.getInt(1));
                 platillo.setNombre(rs.getString(2));
                 platillo.setDescripcion(rs.getString(3));
-                platillo.setImagen(rs.getString(4));
-                platillo.setTipo(rs.getString(5));
-                platillo.setTag(rs.getString(6));
-                platillo.setPost_id(rs.getString(7));
+                 platillo.setTag(rs.getString(4));
+                   platillo.setImagen(rs.getString(5));
+                 platillo.setPuesto(rs.getString(6));
+              
+               
+               
+                platillo.setCant_likes(rs.getInt(7));
                 platillos.add(platillo);
             }
 

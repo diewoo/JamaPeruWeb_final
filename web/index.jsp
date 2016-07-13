@@ -123,7 +123,7 @@
                                 <input type="password" placeholder="password" name="password" id="password" class="form-control"><br>
                                 <button  type="submit" id="ingresar" class="btn btn-primary col-xs-4" style="border-radius: 15px" >Login</button>
                                 <div class="col-xs-4"></div>
-                                <a href="Registro.jsp" class="btn btn-warning col-xs-4" style="border-radius: 15px ">Registrarse</a>
+                                <a href="Registro.jsp" class="btn btn-warning col-xs-4" style="border-radius: 15px ">Sign In</a>
                             </div>
                             <div class="col-xs-3"></div>
                             <br>

@@ -15,150 +15,175 @@
         <title>Platillos</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
         <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
-        
+
     </head>
-    <script>
-        var accessToken;
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '589600291202468',
-                status: true,
-                cookie: true,
-                oauth: true,
-                xfbml: true
-            });
-            FB.getLoginStatus(function (response) {
-                if (response.status == 'connected') {
-                    accessToken = response.authResponse.accessToken;
-                    doSomething();
-                } else {
-                    FB.login(function (response) {
-                        if (response.status == 'connected') {
-                            accessToken = response.authResponse.accessToken;
-                            doSomething();
-                        } else {
-                            alert("Bye.");
-                        }
-                    }, {scope: 'publish_stream,user_photos,friends_photos,user_photo_video_tags,friends_photo_video_tags'});
-                }
-            });
-        };
-
-        // UPLOAD A LOCAL IMAGE FILE, BUT THIS CAN NOT BE DONE WITHOUT USER'S MANUAL OPERATION BECAUSE OF SECURITY REASONS
-        function fileUpload() {
-            FB.api('/me/albums', function (response) {
-                var album = response.data[0]; // Now, upload the image to first found album for easiness.
-                var action_url = 'https://graph.facebook.com/' + album.id + '/photos?access_token=' + accessToken;
-                var form = document.getElementById('upload-photo-form');
-                form.setAttribute('action', action_url);
-
-                // This does not work because of security reasons. Choose the local file manually.
-                // var file = document.getElementById('upload-photo-form-file');
-                // file.setAttribute('value', "/Users/nseo/Desktop/test_title_03.gif")
-
-                form.submit();
-            });
-        }
-        // POST A IMAGE WITH DIALOG using FB.api
-        function postImage1() {
-            var wallPost = {
-                message: "Test to post a photo",
-                picture: "http://www.photographyblogger.net/wp-content/uploads/2010/05/flower29.jpg"
-            };
-            FB.api('/me/feed', 'post', wallPost, function (response) {
-                if (!response || response.error) {
-                    alert('Failure! ' + response.status + ' You may logout once and try again');
-                } else {
-                    alert('Success! Post ID: ' + response);
-                }
-            });
-        }
-
-
-
-        // POST A FEED WITH DIALOG using FB.ui
-        function postFeed2(x2, descripcion,pk_id) {
-            FB.ui(
-                    {
-                        method: 'feed',
-                        name: 'Facebook Dialogs',
-                        link: 'http://developers.facebook.com/docs/reference/dialogs/',
-                        picture: x2,
-                        caption: 'Reference Documentation',
-                        description: descripcion
-                    },
-            function (response) {
-                if (response && response.post_id) {
-                    alert('Succeeded to post');
-                     location.href = 'postearServlet?idpost=' + response.post_id+'&pk_id='+pk_id
-                     console.log(response.post_id);
-                    
-                } else {
-                    alert('Failed to post');
-                    console.log(response.post_id);
-                }
-            }
-            );
-        }
-
-        function displayLikes(iLikes) {
-            swal("Total de likes del post: " + iLikes);
-        }
-        function queryLikes(sResourceID, oCallback) {
-
-            var oCounter = {likes: 0};
-
-            // Consulta o número de likes do recurso
-            FB.api("/" + sResourceID + "/likes?limit=5000",
-                    function (oResponse) {
-                        outputLikers(oResponse.data);
-                        queryResponse(oCounter, oResponse.data.length, oResponse.paging.next, oCallback);
+    <body style="background:  url('img/jama.jpg') no-repeat center center fixed;">
+        <script>
+            var accessToken;
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '589600291202468',
+                    status: true,
+                    cookie: true,
+                    oauth: true,
+                    xfbml: true
+                });
+                FB.getLoginStatus(function (response) {
+                    if (response.status == 'connected') {
+                        accessToken = response.authResponse.accessToken;
+                        doSomething();
+                    } else {
+                        FB.login(function (response) {
+                            if (response.status == 'connected') {
+                                accessToken = response.authResponse.accessToken;
+                                doSomething();
+                            } else {
+                                alert("Bye.");
+                            }
+                        }, {scope: 'publish_stream,user_photos,friends_photos,user_photo_video_tags,friends_photo_video_tags'});
                     }
-            );
-        }
-        function queryResponse(oCounter, iLikes, sNext, oCallback) {
-            oCounter.likes += iLikes;
+                });
+            };
 
-            if (sNext != null) {
-                FB.api(sNext,
+            // UPLOAD A LOCAL IMAGE FILE, BUT THIS CAN NOT BE DONE WITHOUT USER'S MANUAL OPERATION BECAUSE OF SECURITY REASONS
+            function fileUpload() {
+                FB.api('/me/albums', function (response) {
+                    var album = response.data[0]; // Now, upload the image to first found album for easiness.
+                    var action_url = 'https://graph.facebook.com/' + album.id + '/photos?access_token=' + accessToken;
+                    var form = document.getElementById('upload-photo-form');
+                    form.setAttribute('action', action_url);
+
+                    // This does not work because of security reasons. Choose the local file manually.
+                    // var file = document.getElementById('upload-photo-form-file');
+                    // file.setAttribute('value', "/Users/nseo/Desktop/test_title_03.gif")
+
+                    form.submit();
+                });
+            }
+            // POST A IMAGE WITH DIALOG using FB.api
+            function postImage1() {
+                var wallPost = {
+                    message: "Test to post a photo",
+                    picture: "http://www.photographyblogger.net/wp-content/uploads/2010/05/flower29.jpg"
+                };
+                FB.api('/me/feed', 'post', wallPost, function (response) {
+                    if (!response || response.error) {
+                        alert('Failure! ' + response.status + ' You may logout once and try again');
+                    } else {
+                        alert('Success! Post ID: ' + response);
+                    }
+                });
+            }
+
+
+            function obtenerlikes() {
+
+                FB.api(
+                        '/me',
+                        'GET',
+                        {"fields": "feed{likes.limit(5000)}"},
+                function (response) {
+                           console.log(response.feed.data.length);
+                    console.log(response.feed.data[1].likes);
+
+                    var all = response.feed.data;
+                    
+                    for (i in all) {
+                        if (all[i].likes !== undefined) {
+                            console.log( "likes del post :"+""+all[i].likes.data.length);
+                        } else {
+                            console.log(0);
+                        }
+
+                    }});
+
+            }
+
+
+
+            // POST A FEED WITH DIALOG using FB.ui
+            function postFeed2(x2, descripcion, pk_id) {
+                FB.ui(
+                        {
+                            method: 'feed',
+                            name: 'Facebook Dialogs',
+                            link: 'http://developers.facebook.com/docs/reference/dialogs/',
+                            picture: x2,
+                            caption: 'Reference Documentation',
+                            description: descripcion
+                        },
+                function (response) {
+                    if (response && response.post_id) {
+                        alert('Succeeded to post');
+                        location.href = 'postearServlet?idpost=' + response.post_id + '&pk_id=' + pk_id
+                        console.log(response.post_id);
+
+                    } else {
+                        alert('Failed to post');
+                        console.log(response.post_id);
+                    }
+                }
+                );
+            }
+
+            function displayLikes(iLikes) {
+                swal("Total de likes del post: " + iLikes);
+            }
+            function queryLikes(sResourceID, oCallback) {
+
+                var oCounter = {likes: 0};
+
+                // Consulta o número de likes do recurso
+                FB.api("/" + sResourceID + "/likes?limit=5000",
                         function (oResponse) {
                             outputLikers(oResponse.data);
                             queryResponse(oCounter, oResponse.data.length, oResponse.paging.next, oCallback);
                         }
                 );
             }
-            else
-                oCallback(oCounter.likes);
-        }
-        function outputLikers(aData) {
-            for (var i = 0; i < aData.length; ++i) {
-                var oUser = aData[i];
-               console.log(oUser.name + "(" + oUser.id + ")");
+            function queryResponse(oCounter, iLikes, sNext, oCallback) {
+                oCounter.likes += iLikes;
+
+                if (sNext != null) {
+                    FB.api(sNext,
+                            function (oResponse) {
+                                outputLikers(oResponse.data);
+                                queryResponse(oCounter, oResponse.data.length, oResponse.paging.next, oCallback);
+                            }
+                    );
+                }
+                else
+                    oCallback(oCounter.likes);
             }
-        }
+            function outputLikers(aData) {
+                for (var i = 0; i < aData.length; ++i) {
+                    var oUser = aData[i];
+                    console.log(oUser.name + "(" + oUser.id + ")");
+                }
+            }
 
-        <%--     $(document).ready(function () {
-            $('#tabla1').stacktable();
-        });--%>
-        
-    </script>
+            <%--     $(document).ready(function () {
+                $('#tabla1').stacktable();
+            });--%>
+
+        </script>
 
 
-   
-    <script>
-        $(window).bind("load", function () {
-            // Cargar imagenes
-            $(".imgPreload").each(function () {
-                $(this).attr("src", $(this).attr("srcPre"));
+
+        <script>
+            $(window).bind("load", function () {
+                // Cargar imagenes
+                $(".imgPreload").each(function () {
+                    $(this).attr("src", $(this).attr("srcPre"));
+                });
             });
-        });
-    </script>
+        </script>
 
-    <body style="background:  url('img/jama.jpg') no-repeat center center fixed;">
+
         <div id="data"></div>
         <div id="fb-root"></div>
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -187,6 +212,12 @@
             </div>              
         </nav>
 
+        <div class="container-fluid">
+            <div  class="col-md-12">
+                <input style="width: 60%; margin-left: 25%;margin-right: 25%;" type="submit" class="btn btn-warning" id="obtenerganadores"  onclick="obtenerlikes()" value="Obtener Ganadores"/>
+
+            </div>
+        </div>
 
 
         <section class="main clase-general">
@@ -225,20 +256,25 @@
                                             <td style="color: #000000" style="width: 50%;text-align: center"><strong style="text-align: center">Tag </strong></td>
                                             <td style="width: 50%;text-align: center"> 
                                                 <strong> ${x.tag}</strong> </td>
-                                            <%-- <td> <strong>${x.post_id}</strong></td>--%>
-                                            
-                                        </tr>
+                                                <%-- <td> <strong>${x.post_id}</strong></td>--%>
+
+                                        </tr>   
                                         <tr>
+                                            <td style="color: #000000" style="width: 50%;text-align: center"><strong style="text-align: center"> Puesto</strong></td>
+                                            <td style="width: 50%;text-align: center">
 
+                                                <strong>${x.puesto}}</strong>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td style="color: #000000" style="width: 50%;text-align: center"></td>
+                                            <td> <strong>${x.cant_likes}}</strong></td>
+                                        </tr> 
 
-                                            <td style="text-align: center"><p> <a    id="foto "style="color: blue" onclick="javascript:postFeed2('${x.imagen}', '${x.descripcion}','${x.id}')" /><strong>Postear facebook</strong></a></p>  </td>
-                                            <td style="text-align: center"> <p style="color: red"> <a  style="color: red"href="crud?accion=eliminar&id=<c:out value="${x.id}" />"><strong>Eliminar</strong></a></p></td>
-
-                                        </tr>
                                         <tr>
                                             <td style="text-align: center"><p> <a    id="foto "style="color: yellow" /><strong>Contar likes</strong></a></p>  </td>
                                             <td> <a onclick="queryLikes('1082934421722645_1373808005968617', displayLikes);">Consultar likes del post</a></td>
-                                    </tr>
+                                        </tr>
 
 
                                     </tbody>
@@ -274,7 +310,7 @@
                                     <h5 id="idh6" style="text-align: center">
                                         <br ><p style="color: #000000;"><strong >Integrantes:</strong></p> <br >   <p style="color: #000000;"><strong >- Miguel De La Torre  - Christian Valencia  - Miguel Bernedo - Diego Renteria</strong></p><br >
                                         <p style="color: #000000;">  <br><strong>- Diego Renteria - Diego Rojas - Marco Payano - Jordi Apaclla</strong></p><br>
-                                        <br >- Marco Luna - falta uno <>
+                                        <p style="color: #000000;"> <br ><strong>- Marco Luna -Steve Rivera</strong></p>
                                     </h5>                                             
                                 </div>  
                             </li>

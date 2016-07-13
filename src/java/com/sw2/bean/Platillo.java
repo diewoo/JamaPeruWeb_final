@@ -18,12 +18,14 @@ public class Platillo {
     private String tipo;
     private String tag;
     private String estado;
-    private String post_id; 
+    private String post_id;
+    private String puesto;
+    private int cant_likes;
 
     public Platillo() {
     }
 
-    public Platillo(int id, String nombre, String descripcion, String imagen, String tipo, String tag,String estado,String post_id) {
+    public Platillo(int id, String nombre, String descripcion, String imagen, String tipo, String tag,String estado,String post_id,String puesto,int cant_likes) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -32,6 +34,8 @@ public class Platillo {
         this.tag = tag;
         this.estado=estado;
         this.post_id=post_id;
+        this.puesto=puesto;
+        this.cant_likes=cant_likes;
     }
 
     public int getId() {
@@ -97,6 +101,24 @@ public class Platillo {
     public void setPost_id(String post_id) {
         this.post_id = post_id;
     }
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+
+    public int getCant_likes() {
+        return cant_likes;
+    }
+
+    public void setCant_likes(int cant_likes) {
+        this.cant_likes = cant_likes;
+    }
+    
+    
 
     @Override
     public String toString() {

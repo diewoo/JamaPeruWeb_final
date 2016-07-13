@@ -73,7 +73,7 @@
                             <%for (int i = 1; i <= platillos.size(); i++) {%>
                             <li class="btn btn-primary"><a <% if (i == 1) {%> class = "active"<% }%> href="#section<%=i%>"><%=platillos.get(i - 1).getNombre()%></a></li>
                                 <% } %>
-                            <li class="btn btn-primary"><a href="AgregarPlatillo.jsp" value="Agregar Platillo">+</a></li>        
+                            <li class="btn btn-primary"><a href="AgregarPlatillo.jsp" value="Agregar Platillo"><strong>Agregar  </strong></a></li>        
                         </ul><ul></ul>
                     </nav>
                     <%if (platillos.size() != 0) {%>       

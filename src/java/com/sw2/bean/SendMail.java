@@ -105,7 +105,7 @@ public class SendMail {
                     + "\n"
                     + "\n"
                     + "                <div class=\"row\">\n"
-                    + "                    <h1 class=\"col-xs-12\">Bienvenido a Jama Peru&acute: </h1>\n" + "<h1>" + nombre + "</h1>"
+                    + "                    <h1 class=\"col-xs-12\">Bienvenido a Jama Perú: </h1>\n" + "<h1>" + nombre + "</h1>"
                     + "                    <div class=\"col-xs-6\">\n"
                     + "                        <img  class=\" img-responsive \"  style=\"border: 5px solid #666 ;width: auto\" src=\"https://scontent-mia1-1.xx.fbcdn.net/v/t34.0-12/13672494_1374774765871941_93328390_n.png?oh=3ed5e9792d30b02f9b3baccfad1cdf44&oe=57876B48\"  alt=\"\"/>\n"
                     + "                    </div>\n"

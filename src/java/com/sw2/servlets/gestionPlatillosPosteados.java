@@ -36,6 +36,9 @@ public class gestionPlatillosPosteados extends HttpServlet {
             throws ServletException, IOException {
                HttpSession ses = request.getSession(true);
         PlatilloDAO t = new PlatilloDAO();
+        
+        
+        
         List<Platillo> l = t.obtenerPlatillos_posteados();
         
         ses.setAttribute("listado", l);
